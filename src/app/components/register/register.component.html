@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <div class="card shadow-lg p-4 rounded">
+          <h3 class="text-center text-primary mb-4">User Registration</h3>
+  
+          <form (ngSubmit)="onSubmit()" #regForm="ngForm">
+            <!-- Full Name -->
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input type="text" class="form-control" required name="fullName" [(ngModel)]="user.fullName">
+            </div>
+  
+            <!-- Email -->
+            <div class="mb-3">
+              <label class="form-label">Email</label>
+              <input type="email" class="form-control" required name="email" [(ngModel)]="user.email">
+            </div>
+  
+            <!-- Password -->
+            <div class="mb-3">
+              <label class="form-label">Password</label>
+              <input type="password" class="form-control" required name="password" [(ngModel)]="user.password">
+            </div>
+  
+            <!-- Phone -->
+            <div class="mb-3">
+              <label class="form-label">Phone</label>
+              <input type="text" class="form-control" name="phone" [(ngModel)]="user.phone">
+            </div>
+  
+            <!-- Submit -->
+            <button class="btn btn-primary w-100" [disabled]="!regForm.valid">Register</button>
+            <p class="text-center mt-3">
+                Already registered? <a routerLink="/login">Login here</a>
+              </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,32 @@
+{
+  "users": [
+    {
+      "id": "107e",
+      "fullName": "Chirag",
+      "email": "chirag@gmail.com",
+      "password": "qwerty",
+      "phone": "9988776655"
+    },
+    {
+      "id": "8fe1",
+      "fullName": "deepak",
+      "email": "deepak@gmail.com",
+      "password": "qwerty",
+      "phone": "9988776655"
+    },
+    {
+      "id": "b537",
+      "fullName": "Uttam",
+      "email": "Uttam@gmail.com",
+      "password": "qwerty",
+      "phone": "9988776655"
+    },
+    {
+      "id": "08cb",
+      "fullName": "bhavana",
+      "email": "bhavana@gmail.com",
+      "password": "qwerty",
+      "phone": "1234567890"
+    }
+  ]
+}
