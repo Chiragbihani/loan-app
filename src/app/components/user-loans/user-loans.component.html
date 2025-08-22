@@ -1,0 +1,57 @@
+<div class="container mt-4">
+  <h3>My Loans</h3>
+
+  <!-- Apply Loan Form -->
+  <div class="card p-3 mb-4 shadow-sm">
+    <h5>Apply for a New Loan</h5>
+    <form (ngSubmit)="applyLoan()">
+      <div class="row">
+        <div class="col-md-4 mb-2">
+          <input class="form-control" placeholder="Loan Type" [(ngModel)]="newLoan.type" name="type" required>
+        </div>
+        <div class="col-md-4 mb-2">
+          <input type="number" class="form-control" placeholder="Amount" [(ngModel)]="newLoan.amount" name="amount" required>
+        </div>
+        <div class="col-md-4 mb-2">
+          <button class="btn btn-primary w-100">Apply Loan</button>
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <!-- Loans Table -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Type</th>
+        <th>Amount</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let loan of loans">
+        <td>{{loan.id}}</td>
+        <td>{{loan.type}}</td>
+        <td>{{loan.amount}}</td>
+        <td>
+          <span [ngClass]="{
+            'text-warning': loan.status==='pending',
+            'text-success': loan.status==='approved',
+            'text-danger': loan.status==='rejected',
+            'text-muted': loan.status==='cancelled'
+          }">
+            {{loan.status | uppercase}}
+          </span>
+        </td>
+        <td>
+          <!-- Only allow cancel if still pending -->
+          <button *ngIf="loan.status === 'pending'" class="btn btn-sm btn-danger" (click)="cancelLoan(loan.id)">
+            Cancel
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

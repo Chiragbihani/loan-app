@@ -14,11 +14,16 @@ export class LoginComponent {
 
   onLogin() {
     this.authService.login(this.credentials.email, this.credentials.password).subscribe({
-      next: () => {
+      next: (user) => {
         alert('Login successful!');
-        this.router.navigate(['/home']);
+        if (user.role === 'admin') {
+          this.router.navigate(['/admin']);
+        } else {
+          this.router.navigate(['/user-loans']);
+        }
       },
       error: () => alert('Invalid email or password!')
     });
   }
+  
 }

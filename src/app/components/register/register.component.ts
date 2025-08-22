@@ -8,11 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-  user = { fullName: '', email: '', password: '', phone: '' };
+  user = { fullName: '', email: '', password: '', phone: '' ,role:''};
 
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit() {
+    this.user['role'] = 'user';  // default role
     this.authService.register(this.user).subscribe({
       next: () => {
         alert('Registration successful! Please login.');
@@ -21,4 +22,5 @@ export class RegisterComponent {
       error: err => console.error(err)
     });
   }
+  
 }

@@ -1,0 +1,60 @@
+<div class="container mt-4">
+  <h3>Admin Dashboard</h3>
+
+  <!-- Pending Loans -->
+  <h4>Pending Loans</h4>
+  <table class="table table-bordered">
+    <tr>
+      <th>ID</th><th>User ID</th><th>Type</th><th>Amount</th><th>Action</th>
+    </tr>
+    <tr *ngFor="let loan of pendingLoans">
+      <td>{{loan.id}}</td>
+      <td>{{loan.userId}}</td>
+      <td>{{loan.type}}</td>
+      <td>{{loan.amount}}</td>
+      <td>
+        <button class="btn btn-success btn-sm" (click)="updateStatus(loan.id, 'approved')">Approve</button>
+        <button class="btn btn-danger btn-sm" (click)="updateStatus(loan.id, 'rejected')">Reject</button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Approved Loans -->
+  <h4 class="mt-4">Approved Loans</h4>
+  <table class="table table-bordered">
+    <tr><th>ID</th><th>User ID</th><th>Type</th><th>Amount</th><th>Status</th></tr>
+    <tr *ngFor="let loan of approvedLoans">
+      <td>{{loan.id}}</td>
+      <td>{{loan.userId}}</td>
+      <td>{{loan.type}}</td>
+      <td>{{loan.amount}}</td>
+      <td><span class="text-success">Approved</span></td>
+    </tr>
+  </table>
+
+  <!-- Rejected Loans -->
+  <h4 class="mt-4">Rejected Loans</h4>
+  <table class="table table-bordered">
+    <tr *ngFor="let loan of pendingLoans">
+      <td>{{loan.id}}</td>
+      <td>{{loan.userId}}</td>
+      <td>{{loan.type}}</td>
+      <td>{{loan.amount}}</td>
+      <td>
+        <button class="btn btn-success btn-sm" (click)="updateStatus(loan.id, 'approved')">Approve</button>
+        <button class="btn btn-danger btn-sm" (click)="updateStatus(loan.id, 'rejected')">Reject</button>
+      </td>
+    </tr>
+    
+    <tr *ngFor="let loan of rejectedLoans">
+      <td>{{loan.id}}</td>
+      <td>{{loan.userId}}</td>
+      <td>{{loan.type}}</td>
+      <td>{{loan.amount}}</td>
+      <td>
+        <button class="btn btn-warning btn-sm" (click)="updateStatus(loan.id, 'pending')">Move to Pending</button>
+      </td>
+    </tr>
+    
+  </table>
+</div>

@@ -1,32 +1,69 @@
 {
   "users": [
     {
-      "id": "107e",
+      "id": "1",
       "fullName": "Chirag",
-      "email": "chirag@gmail.com",
-      "password": "qwerty",
-      "phone": "9988776655"
+      "email": "chirag@example.com",
+      "password": "12345",
+      "role": "user"
     },
     {
-      "id": "8fe1",
-      "fullName": "deepak",
-      "email": "deepak@gmail.com",
-      "password": "qwerty",
-      "phone": "9988776655"
+      "id": "2",
+      "fullName": "Manager",
+      "email": "admin@example.com",
+      "password": "admin123",
+      "role": "admin"
+    }
+  ],
+  "loans": [
+    {
+      "id": "c8d5",
+      "amount": 1234,
+      "type": "Home Loan",
+      "userId": "df72",
+      "status": "approved"
     },
     {
-      "id": "b537",
-      "fullName": "Uttam",
-      "email": "Uttam@gmail.com",
-      "password": "qwerty",
-      "phone": "9988776655"
+      "id": "7f04",
+      "amount": 2345,
+      "type": "Car Loan",
+      "userId": "df72",
+      "status": "approved"
     },
     {
-      "id": "08cb",
-      "fullName": "bhavana",
-      "email": "bhavana@gmail.com",
-      "password": "qwerty",
-      "phone": "1234567890"
+      "id": "05f1",
+      "amount": 77777,
+      "type": "business loan",
+      "userId": "2",
+      "status": "approved"
+    },
+    {
+      "id": "4b66",
+      "amount": 99999,
+      "type": "emergency laon",
+      "userId": "2",
+      "status": "approved"
+    },
+    {
+      "id": "3cca",
+      "amount": 123445,
+      "type": "car loan",
+      "userId": "2",
+      "status": "approved"
+    },
+    {
+      "id": "cb00",
+      "amount": 120000,
+      "type": "Fin",
+      "userId": "2",
+      "status": "approved"
+    },
+    {
+      "id": "7c22",
+      "amount": 323678,
+      "type": "home 2 loan",
+      "userId": "2",
+      "status": "rejected"
     }
   ]
 }
