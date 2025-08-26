@@ -13,57 +13,52 @@
       "email": "admin@example.com",
       "password": "admin123",
       "role": "admin"
+    },
+    {
+      "id": "c653",
+      "fullName": "Nidhi",
+      "email": "Nidhi@gmail.com",
+      "password": "12345",
+      "phone": "1234567890",
+      "role": "user"
+    },
+    {
+      "id": "1b7f",
+      "fullName": "Tanuj",
+      "email": "tanuj@gmail.com",
+      "password": "12345",
+      "phone": "9876543210",
+      "role": "user"
     }
   ],
   "loans": [
     {
-      "id": "c8d5",
-      "amount": 1234,
+      "id": "de4b",
+      "amount": 100000,
       "type": "Home Loan",
-      "userId": "df72",
+      "userId": "c653",
       "status": "approved"
     },
     {
-      "id": "7f04",
-      "amount": 2345,
-      "type": "Car Loan",
-      "userId": "df72",
-      "status": "approved"
-    },
-    {
-      "id": "05f1",
-      "amount": 77777,
-      "type": "business loan",
-      "userId": "2",
-      "status": "approved"
-    },
-    {
-      "id": "4b66",
-      "amount": 99999,
-      "type": "emergency laon",
-      "userId": "2",
-      "status": "approved"
-    },
-    {
-      "id": "3cca",
-      "amount": 123445,
-      "type": "car loan",
-      "userId": "2",
-      "status": "approved"
-    },
-    {
-      "id": "cb00",
-      "amount": 120000,
-      "type": "Fin",
-      "userId": "2",
-      "status": "approved"
-    },
-    {
-      "id": "7c22",
-      "amount": 323678,
-      "type": "home 2 loan",
-      "userId": "2",
+      "id": "a4f5",
+      "amount": 100000,
+      "type": "personal loan",
+      "userId": "c653",
       "status": "rejected"
+    },
+    {
+      "id": "e11b",
+      "amount": 99999,
+      "type": "Car Loan",
+      "userId": "1",
+      "status": "pending"
+    },
+    {
+      "id": "ab90",
+      "amount": 12345,
+      "type": "Study Loan",
+      "userId": "1b7f",
+      "status": "pending"
     }
   ]
 }

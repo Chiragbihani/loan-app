@@ -15,7 +15,7 @@ export class LoanService {
     return this.http.post(this.baseUrl, loan);
   }
 
-  getUserLoans(userId: number): Observable<any[]> {
+  getUserLoans(userId: string): Observable<any[]> {
     return this.http.get<any[]>(`${this.baseUrl}?userId=${userId}`);
   }
 

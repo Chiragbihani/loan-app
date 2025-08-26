@@ -8,12 +8,13 @@ import { UserLoansComponent } from './components/user-loans/user-loans.component
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
+import { LandingPageComponent } from './components/landing-page/landing-page.component'; // Import the LandingPageComponent
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'register', pathMatch: 'full' },
-  { path: 'register', component: RegisterComponent },
+  { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'apply-loan', component: ApplyLoanComponent, canActivate: [AuthGuard] },
   { path: 'user-loans', component: UserLoansComponent, canActivate: [AuthGuard] },

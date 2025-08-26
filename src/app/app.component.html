@@ -1,37 +1,26 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/">Loan Management</a>
-
     <div class="collapse navbar-collapse">
       <ul class="navbar-nav ms-auto">
 
-        <!-- Show if no user logged in -->
-        <ng-container *ngIf="!currentUser">
-          <li class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
-          <li class="nav-item"><a class="nav-link" routerLink="/register">Register</a></li>
-        </ng-container>
-
-        <!-- Show if user is logged in -->
-        <ng-container *ngIf="currentUser">
-
-          <!-- User role -->
-          <!-- User links -->
-          <ng-container *ngIf="currentUser?.role === 'user'">
-            <li class="nav-item"><a class="nav-link" routerLink="/home">Home</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/apply-loan">Apply Loan</a></li>
-            <li class="nav-item"><a class="nav-link" routerLink="/my-loans">My Loans</a></li>
+        <!-- Hide all buttons on login/register pages -->
+        <ng-container *ngIf="!isAuthPage">
+          <!-- Show user's name and Logout if logged in -->
+          <ng-container *ngIf="currentUser">
+            <li class="nav-item">
+              <span class="nav-link text-light">Welcome, {{currentUser.fullName}}</span>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-danger" (click)="logout()" style="cursor:pointer;">Logout</a>
+            </li>
           </ng-container>
 
-          <!-- Admin links -->
-          <ng-container *ngIf="currentUser?.role === 'admin'">
-            <li class="nav-item"><a class="nav-link" routerLink="/admin">Admin Dashboard</a></li>
+          <!-- Show Login/Register if not logged in -->
+          <ng-container *ngIf="!currentUser">
+            <li class="nav-item"><a class="nav-link" routerLink="/login">Login</a></li>
+            <li class="nav-item"><a class="nav-link" routerLink="/register">Register</a></li>
           </ng-container>
-
-
-          <!-- Common logout -->
-          <li class="nav-item">
-            <a class="nav-link text-danger" (click)="logout()" style="cursor:pointer;">Logout</a>
-          </li>
         </ng-container>
 
       </ul>

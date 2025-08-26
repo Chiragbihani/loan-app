@@ -20,6 +20,7 @@ export class UserLoansComponent implements OnInit {
     const currentUser = JSON.parse(localStorage.getItem('currentUser')!);
     this.newLoan.userId = currentUser.id;
 
+    // Change getUserLoans to use string id
     this.loanService.getUserLoans(currentUser.id).subscribe(res => {
       this.loans = res;
     });

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanService } from '../../service/loan.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -10,11 +11,19 @@ export class AdminDashboardComponent implements OnInit {
   pendingLoans: any[] = [];
   approvedLoans: any[] = [];
   rejectedLoans: any[] = [];
+  users: any[] = [];
 
-  constructor(private loanService: LoanService) {}
+  constructor(private loanService: LoanService, private http: HttpClient) {}
 
   ngOnInit() {
     this.fetchLoans();
+    this.fetchUsers();
+  }
+
+  fetchUsers() {
+    this.http.get<any[]>('http://localhost:3000/users').subscribe(res => {
+      this.users = res;
+    });
   }
 
   fetchLoans() {
@@ -29,5 +38,10 @@ export class AdminDashboardComponent implements OnInit {
     this.loanService.updateLoanStatus(id, status).subscribe(() => {
       this.fetchLoans();
     });
+  }
+
+  getUserName(userId: string): string {
+    const user = this.users?.find(u => u.id === userId);
+    return user ? user.fullName : 'Unknown';
   }
 }

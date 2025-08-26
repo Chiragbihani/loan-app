@@ -1,5 +1,117 @@
 /* You can add global styles to this file, and also import other style files */
-.nav-link.active {
-    font-weight: bold;
-    text-decoration: underline;
+
+/* Reset to default styles */
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #fff;
+}
+
+.navbar {
+  background: #343a40 !important;
+}
+
+.navbar-brand {
+  color: #fff !important;
+}
+
+.nav-link {
+  color: #fff !important;
+}
+
+.card {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+.card-title {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.card-text {
+  color: #333;
+}
+
+.btn-primary {
+  background: #007bff;
+  border: none;
+  color: #fff;
+  border-radius: 4px;
+  padding: 0.375rem 0.75rem;
+}
+
+.btn-primary:hover {
+  background: #0056b3;
+}
+
+.btn-outline-primary {
+  border: 1px solid #007bff;
+  color: #007bff;
+  border-radius: 4px;
+  background: #fff;
+  padding: 0.375rem 0.75rem;
+}
+
+.btn-outline-primary:hover {
+  background: #007bff;
+  color: #fff;
+}
+
+/* Table */
+.table th {
+  background: #343a40;
+  color: #fff;
+}
+
+.table {
+  background: #fff;
+  border-radius: 4px;
+}
+
+/* Form controls */
+.form-control {
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: none;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5 {
+  color: #343a40;
+  font-weight: bold;
+}
+
+/* Misc */
+.shadow-lg {
+  box-shadow: 0 8px 32px rgba(58, 123, 213, 0.18) !important;
+}
+
+.rounded {
+  border-radius: 18px !important;
+}
+
+.mt-5 {
+  margin-top: 3rem !important;
+}
+
+.mb-4 {
+  margin-bottom: 2rem !important;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.2rem;
   }
+  .card {
+    margin-bottom: 1rem;
+  }
+}
