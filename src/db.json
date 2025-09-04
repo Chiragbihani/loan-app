@@ -29,36 +29,61 @@
       "password": "12345",
       "phone": "9876543210",
       "role": "user"
+    },
+    {
+      "id": "393b",
+      "fullName": "Nidhi G ",
+      "email": "Nidhi@gmail.com",
+      "password": "12345",
+      "phone": "8105968937",
+      "role": "user"
     }
   ],
   "loans": [
     {
-      "id": "de4b",
+      "id": "dbde",
       "amount": 100000,
       "type": "Home Loan",
-      "userId": "c653",
-      "status": "approved"
-    },
-    {
-      "id": "a4f5",
-      "amount": 100000,
-      "type": "personal loan",
-      "userId": "c653",
-      "status": "rejected"
-    },
-    {
-      "id": "e11b",
-      "amount": 99999,
-      "type": "Car Loan",
       "userId": "1",
-      "status": "pending"
+      "status": "approved",
+      "tenure": "2 ",
+      "dateTaken": "2025-09-04"
     },
     {
-      "id": "ab90",
-      "amount": 12345,
-      "type": "Study Loan",
-      "userId": "1b7f",
-      "status": "pending"
+      "id": "879f",
+      "amount": 123456,
+      "type": "car loan",
+      "userId": "1",
+      "status": "approved",
+      "tenure": "2",
+      "dateTaken": "2025-09-04"
+    },
+    {
+      "id": "09f8",
+      "amount": 100000,
+      "type": "gold",
+      "userId": "1",
+      "status": "pending",
+      "tenure": 12,
+      "dateTaken": "2025-09-04"
+    },
+    {
+      "id": "aaae",
+      "amount": 1000000,
+      "type": "business",
+      "userId": "1",
+      "status": "rejected",
+      "tenure": 12,
+      "dateTaken": "2025-09-04"
+    },
+    {
+      "id": "a062",
+      "amount": 100000,
+      "type": "gold",
+      "userId": "c653",
+      "status": "pending",
+      "tenure": 24,
+      "dateTaken": "2025-09-04"
     }
   ]
 }

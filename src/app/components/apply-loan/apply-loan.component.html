@@ -1,36 +1,15 @@
 <div class="container mt-4">
-  <h3>Apply for a Loan</h3>
-  <form (ngSubmit)="onSubmit()" #loanForm="ngForm">
-    <div class="mb-3">
-      <label>Loan Amount</label>
-      <input 
-        class="form-control" 
-        [(ngModel)]="loan.amount" 
-        name="amount" 
-        required 
-        min="1" 
-        type="number"
-        placeholder="Enter positive amount"
-        step="any"  
-        #amount="ngModel"  
-      >
-      <div *ngIf="amount.invalid && amount.touched" class="text-danger">
-        Amount is required and must be a positive number.
+    <h3>Apply for a Loan</h3>
+    <form (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label>Loan Amount</label>
+        <input class="form-control" [(ngModel)]="loan.amount" name="amount" required>
       </div>
-    </div>
-    <div class="mb-3">
-      <label>Loan Type</label>
-      <input 
-        class="form-control" 
-        [(ngModel)]="loan.type" 
-        name="type" 
-        required 
-        #type="ngModel"  
-      >
-      <div *ngIf="type.invalid && type.touched" class="text-danger">
-        Loan type is required.
+      <div class="mb-3">
+        <label>Loan Type</label>
+        <input class="form-control" [(ngModel)]="loan.type" name="type" required>
       </div>
-    </div>
-    <button class="btn btn-primary" [disabled]="loanForm.invalid">Apply</button>
-  </form>
-</div>
+      <button class="btn btn-primary">Apply</button>
+    </form>
+  </div>
+  

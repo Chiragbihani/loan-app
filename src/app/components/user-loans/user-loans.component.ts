@@ -8,7 +8,20 @@ import { LoanService } from '../../service/loan.service';
 })
 export class UserLoansComponent implements OnInit {
   loans: any[] = [];
-  newLoan = { amount: '', type: '', userId: null, status: 'pending' };
+  newLoan = { amount: '', type: '', userId: null, status: 'pending', tenure: '', dateTaken: '' };
+  activeSection: 'apply' | 'applied' = 'applied';
+
+  // ✅ Interest rates mapping
+  loanInterestRates: { [key: string]: number } = {
+    home: 7,
+    personal: 12,
+    education: 6,
+    car: 8,
+    gold: 10,
+    business: 11,
+    agriculture: 5,
+    medical: 9
+  };
 
   constructor(private loanService: LoanService) {}
 
@@ -20,17 +33,21 @@ export class UserLoansComponent implements OnInit {
     const currentUser = JSON.parse(localStorage.getItem('currentUser')!);
     this.newLoan.userId = currentUser.id;
 
-    // Change getUserLoans to use string id
     this.loanService.getUserLoans(currentUser.id).subscribe(res => {
-      this.loans = res;
+      // ✅ Attach repayment info to each loan
+      this.loans = res.map(loan => ({
+        ...loan,
+        repaymentAmount: this.calculateRepayment(loan),
+        repaymentDate: this.calculateRepaymentDate(loan)
+      }));
     });
   }
 
   applyLoan() {
     this.loanService.applyLoan(this.newLoan).subscribe(() => {
       alert('Loan applied successfully! Pending approval.');
-      this.newLoan = { amount: '', type: '', userId: this.newLoan.userId, status: 'pending' };
-      this.loadLoans(); // refresh the table
+      this.newLoan = { amount: '', type: '', userId: this.newLoan.userId, status: 'pending', tenure: '', dateTaken: '' };
+      this.loadLoans();
     });
   }
 
@@ -41,5 +58,22 @@ export class UserLoansComponent implements OnInit {
         this.loadLoans();
       });
     }
+  }
+
+  // ✅ Calculate repayment amount (simple interest for now)
+  calculateRepayment(loan: any): number {
+    const rate = this.loanInterestRates[loan.type] || 10; // fallback 10% if type not found
+    const principal = Number(loan.amount);
+    const tenureYears = Number(loan.tenure) / 12;
+    const interest = (principal * rate * tenureYears) / 100;
+    return Math.round(principal + interest);
+  }
+
+  // ✅ Calculate repayment date (loan start + tenure months)
+  calculateRepaymentDate(loan: any): string {
+    if (!loan.dateTaken || !loan.tenure) return 'N/A';
+    const startDate = new Date(loan.dateTaken);
+    startDate.setMonth(startDate.getMonth() + Number(loan.tenure));
+    return startDate.toISOString().split('T')[0]; // format YYYY-MM-DD
   }
 }
