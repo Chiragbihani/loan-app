@@ -1,31 +1,40 @@
 <div class="container mt-4">
-  <h3>My Loans</h3>
-
-  <!-- Apply Loan Form -->
-  <div class="card p-3 mb-4 shadow-sm">
-    <h5>Apply for a New Loan</h5>
-    <form (ngSubmit)="applyLoan()">
-      <div class="row">
-        <div class="col-md-4 mb-2">
-          <input class="form-control" placeholder="Loan Type" [(ngModel)]="newLoan.type" name="type" required>
-        </div>
-        <div class="col-md-4 mb-2">
-          <input type="number" class="form-control" placeholder="Amount" [(ngModel)]="newLoan.amount" name="amount" required>
-        </div>
-        <div class="col-md-4 mb-2">
-          <button class="btn btn-primary w-100">Apply Loan</button>
-        </div>
+  <div class="row">
+    <!-- Sidebar -->
+    <div class="col-md-3">
+      <div class="list-group">
+        <button class="list-group-item list-group-item-action"
+                [class.active]="activeSection === 'apply'"
+                (click)="activeSection = 'apply'">
+          Apply Loan
+        </button>
+        <button class="list-group-item list-group-item-action"
+                [class.active]="activeSection === 'applied'"
+                (click)="activeSection = 'applied'">
+          Applied Loans
+        </button>
       </div>
-    </form>
-  </div>
+    </div>
 
-  <!-- Loans Table -->
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <!-- Apply Loan Form -->
+      <div *ngIf="activeSection === 'apply'">
+        <app-apply-loan></app-apply-loan>
+      </div>
+
+      <!-- Applied Loans Table -->
+      <div *ngIf="activeSection === 'applied'">
   <table class="table table-bordered">
     <thead>
       <tr>
         <th>ID</th>
         <th>Type</th>
         <th>Amount</th>
+        <th>Tenure (Months)</th>
+        <th>Date Taken</th>
+        <th>Repayment Date</th>
+        <th>Repayment Amount</th>
         <th>Status</th>
         <th>Actions</th>
       </tr>
@@ -35,6 +44,10 @@
         <td>{{loan.id}}</td>
         <td>{{loan.type}}</td>
         <td>{{loan.amount}}</td>
+        <td>{{loan.tenure}}</td>
+        <td>{{loan.dateTaken}}</td>
+        <td>{{loan.repaymentDate}}</td>
+        <td>{{loan.repaymentAmount}}</td>
         <td>
           <span [ngClass]="{
             'text-warning': loan.status==='pending',
@@ -42,16 +55,20 @@
             'text-danger': loan.status==='rejected',
             'text-muted': loan.status==='cancelled'
           }">
-            {{loan.status | uppercase}}
+            {{loan.status ? (loan.status | uppercase) : 'PENDING'}}
           </span>
         </td>
         <td>
-          <!-- Only allow cancel if still pending -->
           <button *ngIf="loan.status === 'pending'" class="btn btn-sm btn-danger" (click)="cancelLoan(loan.id)">
             Cancel
           </button>
+          <span *ngIf="loan.status !== 'pending'">-</span>
         </td>
       </tr>
     </tbody>
   </table>
+</div>
+
+    </div>
+  </div>
 </div>

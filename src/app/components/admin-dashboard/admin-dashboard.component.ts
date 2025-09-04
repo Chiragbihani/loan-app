@@ -12,6 +12,11 @@ export class AdminDashboardComponent implements OnInit {
   approvedLoans: any[] = [];
   rejectedLoans: any[] = [];
   users: any[] = [];
+  activeTab: 'pending' | 'approved' | 'rejected' |''= '';
+  // Separate filters & sorting
+  pendingFilter = { type: '', userId: '', amount: null as number | null, amountCondition: '', sortOrder: '' };
+  approvedFilter = { type: '', userId: '', amount: null as number | null, amountCondition: '', sortOrder: '' };
+  rejectedFilter = { type: '', userId: '', amount: null as number | null, amountCondition: '', sortOrder: '' };
 
   constructor(private loanService: LoanService, private http: HttpClient) {}
 
@@ -44,4 +49,31 @@ export class AdminDashboardComponent implements OnInit {
     const user = this.users?.find(u => u.id === userId);
     return user ? user.fullName : 'Unknown';
   }
+
+  // 🔹 Generic filter + sort
+  getFilteredLoans(loans: any[], filter: any) {
+    let filtered = loans;
+
+    if (filter.type) {
+      filtered = filtered.filter(l => l.type.toLowerCase().includes(filter.type.toLowerCase()));
+    }
+    if (filter.userId) {
+      filtered = filtered.filter(l => l.userId.toString().includes(filter.userId));
+    }
+    if (filter.amount !== null && filter.amountCondition) {
+      if (filter.amountCondition === 'greater') {
+        filtered = filtered.filter(l => l.amount > (filter.amount ?? 0));
+      } else if (filter.amountCondition === 'less') {
+        filtered = filtered.filter(l => l.amount < (filter.amount ?? 0));
+      }
+    }
+    if (filter.sortOrder) {
+      filtered = filtered.sort((a, b) =>
+        filter.sortOrder === 'asc' ? a.amount - b.amount : b.amount - a.amount
+      );
+    }
+
+    return filtered;
+  }
 }
+

@@ -2,8 +2,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { HomeComponent } from './components/home/home.component';
-import { ApplyLoanComponent } from './components/apply-loan/apply-loan.component';
+// import { HomeComponent } from './components/home/home.component';
+// import { ApplyLoanComponent } from './components/apply-loan/apply-loan.component';
 import { UserLoansComponent } from './components/user-loans/user-loans.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
@@ -15,8 +15,8 @@ const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
-  { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
-  { path: 'apply-loan', component: ApplyLoanComponent, canActivate: [AuthGuard] },
+  // { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
+  // { path: 'apply-loan', component: ApplyLoanComponent, canActivate: [AuthGuard] },
   { path: 'user-loans', component: UserLoansComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminDashboardComponent, canActivate: [AdminGuard] }
 

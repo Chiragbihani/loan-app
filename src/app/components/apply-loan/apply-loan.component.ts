@@ -7,7 +7,18 @@ import { AuthService } from '../../service/auth.service';
   templateUrl: './apply-loan.component.html'
 })
 export class ApplyLoanComponent {
-  loan = { amount: '', type: '', userId: null, status: 'pending' };
+  loan = { amount: '', type: '', userId: null, status: 'pending',tenure:'' ,dateTaken:''};
+  loanInterestRates: { [key: string]: number } = {
+  home: 7,
+  personal: 12,
+  education: 6,
+  car: 8,
+  gold: 10,
+  business: 11,
+  agriculture: 5,
+  medical: 9
+};
+
 
   constructor(private loanService: LoanService, private auth: AuthService) {}
 
