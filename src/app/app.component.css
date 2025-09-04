@@ -1,0 +1,76 @@
+/* Navbar Styling */
+.navbar {
+  background-color: #343a40;  /* Darker background for contrast */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow to lift navbar */
+  padding: 10px 20px;
+  border-radius: 0 !important; /* Remove rounded corners */
+}
+
+.navbar-brand {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #ffffff;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand:hover {
+  color: #17a2b8; /* Light cyan color when hovered */
+}
+
+.nav-item {
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link {
+  color: #f8f9fa;  /* Light text color for the links */
+  padding: 8px 12px;
+}
+
+.nav-link:hover {
+  color: #17a2b8; /* Change to light cyan when hovered */
+}
+
+.nav-link.active {
+  color: #007bff; /* Active link color */
+  font-weight: 600;
+}
+
+/* For user welcome and logout link */
+.nav-item span {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Add some padding between nav items on the right side */
+.navbar-nav.ms-auto {
+  margin-left: auto;
+}
+
+/* Logout Link Styling */
+.nav-link.text-danger {
+  background-color: #e60000;
+  color: #dc3545;  /* Default red color for Logout */
+  font-weight: bold;
+  transition: color 0.3s ease;
+  border-radius: 4px;
+}
+
+.nav-link.text-danger:hover {
+  color: #e60000; /* Darker red color on hover */
+}
+
+/* Responsive Adjustments for smaller screens */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px;
+  }
+
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .nav-item {
+    font-size: 0.9rem;
+  }
+}

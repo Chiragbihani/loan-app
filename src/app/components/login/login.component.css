@@ -1,0 +1,105 @@
+/* General Styling */
+body {
+    background: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Centering and Styling the Card */
+  .card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card-title {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 1.75rem; /* Slightly larger for better focus */
+  }
+  
+  /* Form Element Styling */
+  .form-label {
+    font-weight: 500;
+    color: #495057;
+  }
+  
+  input.form-control {
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+  }
+  
+  input.form-control:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Button Styling */
+  button.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+    font-weight: 500;
+    border-radius: 10px;
+    padding: 12px;
+    font-size: 16px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  button.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+  
+  button.btn-success:disabled {
+    opacity: 0.7;
+  }
+  
+  /* Button Spacing and Full Width */
+  button.btn-success.w-100 {
+    margin-top: 20px;
+  }
+  
+  /* Text and Link Styling */
+  p.text-center a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  
+  p.text-center a:hover {
+    text-decoration: underline;
+  }
+  
+  .text-success {
+    color: #28a745 !important;
+  }
+  
+  /* Centering and Aligning the Card Container */
+  .row.justify-content-center {
+    margin-top: 50px;
+  }
+  
+  .col-md-5 {
+    max-width: 450px;
+    padding: 30px;
+    margin-top: 20px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .card {
+      padding: 25px;
+    }
+  
+    .col-md-5 {
+      width: 100%;
+      margin-top: 15px;
+    }
+  }
+  

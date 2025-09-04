@@ -1,0 +1,382 @@
+/* General Body Styling */
+body {
+    background-color: #f8f9fa;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* Page Title */
+  h3 {
+    font-weight: 600;
+    color: #2c3e50;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Subheading Styling */
+  h4 {
+    font-weight: 600;
+    color: #34495e;
+    font-size: 1.5rem;
+    margin-top: 30px;
+    margin-bottom: 10px;
+  }
+  
+  /* Table Styling with Rounded Corners */
+  .table-bordered {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    overflow: hidden;  /* Prevents border-radius from being overridden by table's child elements */
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    border-radius: 8px;  /* Rounded corners for table cells */
+  }
+  
+  /* Ensure the table header has rounded top corners */
+  .table thead th:first-child {
+    border-top-left-radius: 10px;
+  }
+  
+  .table thead th:last-child {
+    border-top-right-radius: 10px;
+  }
+  
+  /* Ensure the table footer has rounded bottom corners */
+  .table tfoot td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+  
+  .table tfoot td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+  
+  /* Status Badge Styling for Approved & Rejected Loans */
+  .text-success {
+    color: #28a745;
+    font-weight: 600;
+  }
+  
+  .text-danger {
+    color: #dc3545;
+    font-weight: 600;
+  }
+  
+  /* Button Styling for Approve/Reject Actions */
+  button.btn-sm {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  button.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  button.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+  
+  button.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  button.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+  
+  /* Card Styling for Admin Dashboard Sections */
+  .card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  /* Table Styling with Rounded Corners */
+.table-bordered {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  overflow: hidden;  /* Prevents border-radius from being overridden by table's child elements */
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  border-radius: 8px;  /* Rounded corners for table cells */
+}
+
+/* Table Header Background Color (matching user dashboard) */
+.table th {
+  background-color: #f1f1f1;  /* Light gray background for header */
+  color: #333;  /* Dark text color for contrast */
+  font-weight: 600;  /* Bold text in header */
+}
+
+/* Ensure the table header has rounded top corners */
+.table thead th:first-child {
+  border-top-left-radius: 10px;
+}
+
+.table thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* Ensure the table footer has rounded bottom corners */
+.table tfoot td:first-child {
+  border-bottom-left-radius: 10px;
+}
+
+.table tfoot td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+/* Status Badge Styling for Approved & Rejected Loans */
+.text-success {
+  color: #28a745;
+  font-weight: 600;
+}
+
+.text-danger {
+  color: #dc3545;
+  font-weight: 600;
+}
+
+/* Button Styling for Approve/Reject Actions */
+button.btn-sm {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button.btn-success {
+  background-color: #28a745;
+  border-color: #28a745;
+}
+
+button.btn-success:hover {
+  background-color: #218838;
+  border-color: #1e7e34;
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+}
+
+button.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* Card Styling for Admin Dashboard Sections */
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 20px;
+}
+/* Table Styling with Rounded Corners */
+.table-bordered {
+    border-radius: 10px;
+    border: 1px solid #ddd;
+    background-color: #ffffff;
+    overflow: hidden;  /* Prevents border-radius from being overridden by table's child elements */
+  }
+  
+  .table th,
+  .table td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    border-radius: 8px;  /* Rounded corners for table cells */
+  }
+  
+  /* Table Header Background Color (light blue) */
+  .table th {
+    background-color: #e9f7fe;  /* Light blue background for header */
+    color: #333;  /* Dark text color for contrast */
+    font-weight: 600;  /* Bold text in header */
+  }
+  
+  /* Ensure the table header has rounded top corners */
+  .table thead th:first-child {
+    border-top-left-radius: 10px;
+  }
+  
+  .table thead th:last-child {
+    border-top-right-radius: 10px;
+  }
+  
+  /* Ensure the table footer has rounded bottom corners */
+  .table tfoot td:first-child {
+    border-bottom-left-radius: 10px;
+  }
+  
+  .table tfoot td:last-child {
+    border-bottom-right-radius: 10px;
+  }
+  
+  /* Status Badge Styling for Approved & Rejected Loans */
+  .text-success {
+    color: #28a745;
+    font-weight: 600;
+  }
+  
+  .text-danger {
+    color: #dc3545;
+    font-weight: 600;
+  }
+  
+  /* Button Styling for Approve/Reject Actions */
+  button.btn-sm {
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+  }
+  
+  button.btn-success {
+    background-color: #28a745;
+    border-color: #28a745;
+  }
+  
+  button.btn-success:hover {
+    background-color: #218838;
+    border-color: #1e7e34;
+  }
+  
+  button.btn-danger {
+    background-color: #dc3545;
+    border-color: #dc3545;
+  }
+  
+  button.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+  }
+  
+  /* Card Styling for Admin Dashboard Sections */
+  .card {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .table th,
+    .table td {
+      font-size: 14px;
+    }
+  
+    button.btn-sm {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  
+    .table {
+      font-size: 14px;
+    }
+  
+    .card-body {
+      padding: 15px;
+    }
+  
+    h4 {
+      font-size: 1.25rem;
+    }
+  }
+  
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 14px;
+  }
+
+  button.btn-sm {
+    font-size: 12px;
+    padding: 4px 8px;
+  }
+
+  .table {
+    font-size: 14px;
+  }
+
+  .card-body {
+    padding: 15px;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+  }
+}
+
+  
+  /* Responsive Adjustments */
+  @media (max-width: 768px) {
+    .table th,
+    .table td {
+      font-size: 14px;
+    }
+  
+    button.btn-sm {
+      font-size: 12px;
+      padding: 4px 8px;
+    }
+  
+    .table {
+      font-size: 14px;
+    }
+  
+    .card-body {
+      padding: 15px;
+    }
+  
+    h4 {
+      font-size: 1.25rem;
+    }
+  }
+  

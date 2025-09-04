@@ -8,7 +8,7 @@ import { UserLoansComponent } from './components/user-loans/user-loans.component
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin.guard';
-import { LandingPageComponent } from './components/landing-page/landing-page.component'; // Import the LandingPageComponent
+import { LandingPageComponent } from './components/landing-page/landing-page.component'; 
 
 
 const routes: Routes = [
