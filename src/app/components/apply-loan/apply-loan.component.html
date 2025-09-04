@@ -1,15 +1,42 @@
 <div class="container mt-4">
-    <h3>Apply for a Loan</h3>
-    <form (ngSubmit)="onSubmit()">
-      <div class="mb-3">
-        <label>Loan Amount</label>
-        <input class="form-control" [(ngModel)]="loan.amount" name="amount" required>
-      </div>
-      <div class="mb-3">
-        <label>Loan Type</label>
-        <input class="form-control" [(ngModel)]="loan.type" name="type" required>
-      </div>
-      <button class="btn btn-primary">Apply</button>
-    </form>
-  </div>
+  <h3>Apply for a Loan</h3>
+  <form (ngSubmit)="onSubmit()" #loanForm="ngForm">
+    
+    <!-- Type of Loan -->
+    <div class="mb-3">
+      <label class="form-label">Type of Loan</label>
+      <select class="form-select" required name="type" [(ngModel)]="loan.type">
+        <option value="" disabled selected>Select Loan Type</option>
+        <option value="home">Home Loan (7% p.a.)</option>
+        <option value="personal">Personal Loan (12% p.a.)</option>
+        <option value="education">Education Loan (6% p.a.)</option>
+        <option value="car">Car Loan (8% p.a.)</option>
+        <option value="gold">Gold Loan (10% p.a.)</option>
+        <option value="business">Business Loan (11% p.a.)</option>
+        <option value="agriculture">Agriculture Loan (5% p.a.)</option>
+        <option value="medical">Medical Loan (9% p.a.)</option>
+      </select>
+    </div>
+
+    <!-- Amount -->
+    <div class="mb-3">
+      <label class="form-label">Amount</label>
+      <input type="number" class="form-control" required name="amount" [(ngModel)]="loan.amount">
+    </div>
+
+    <!-- Tenure -->
+    <div class="mb-3">
+      <label class="form-label">Tenure (months)</label>
+      <input type="number" class="form-control" required name="tenure" [(ngModel)]="loan.tenure">
+    </div>
+
+    <!-- Date of Loan Taken -->
+    <div class="mb-3">
+      <label class="form-label">Date of Loan Taken</label>
+      <input type="date" class="form-control" required name="dateTaken" [(ngModel)]="loan.dateTaken">
+    </div>
+
+    <button class="btn btn-success" [disabled]="!loanForm.valid">Apply</button>
+  </form>
+</div>
   
