@@ -9,9 +9,8 @@ import { LoanService } from '../../service/loan.service';
 export class UserLoansComponent implements OnInit {
   loans: any[] = [];
   newLoan = { amount: '', type: '', userId: null, status: 'pending', tenure: '', dateTaken: '' };
-  activeSection: 'apply' | 'applied' = 'applied';
+  activeSection: 'apply' | 'applied' | 'repay' = 'applied';
 
-  // ✅ Interest rates mapping
   loanInterestRates: { [key: string]: number } = {
     home: 7,
     personal: 12,
@@ -34,7 +33,6 @@ export class UserLoansComponent implements OnInit {
     this.newLoan.userId = currentUser.id;
 
     this.loanService.getUserLoans(currentUser.id).subscribe(res => {
-      // ✅ Attach repayment info to each loan
       this.loans = res.map(loan => ({
         ...loan,
         repaymentAmount: this.calculateRepayment(loan),
@@ -60,20 +58,18 @@ export class UserLoansComponent implements OnInit {
     }
   }
 
-  // ✅ Calculate repayment amount (simple interest for now)
   calculateRepayment(loan: any): number {
-    const rate = this.loanInterestRates[loan.type] || 10; // fallback 10% if type not found
+    const rate = this.loanInterestRates[loan.type] || 10;
     const principal = Number(loan.amount);
     const tenureYears = Number(loan.tenure) / 12;
     const interest = (principal * rate * tenureYears) / 100;
     return Math.round(principal + interest);
   }
 
-  // ✅ Calculate repayment date (loan start + tenure months)
   calculateRepaymentDate(loan: any): string {
     if (!loan.dateTaken || !loan.tenure) return 'N/A';
     const startDate = new Date(loan.dateTaken);
     startDate.setMonth(startDate.getMonth() + Number(loan.tenure));
-    return startDate.toISOString().split('T')[0]; // format YYYY-MM-DD
+    return startDate.toISOString().split('T')[0];
   }
 }

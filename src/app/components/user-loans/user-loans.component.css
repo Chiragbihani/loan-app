@@ -1,198 +1,210 @@
 /* General Body Styling */
 body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f8f9fa;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+/* Sidebar Card */
+.sidebar-card {
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Sidebar Nav Links */
+/* Sidebar Nav Links */
+/* Sidebar Nav Links */
+.nav-pills .nav-link {
+  border-radius: 0;
+  padding: 12px 15px;
+  text-align: left;
+  font-weight: 500;
+  color: #fff; /* White text for contrast */
+  background-color: #007bff; /* Default blue */
+  transition: background 0.3s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Hover State */
+.nav-pills .nav-link:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  color: #fff;
+}
+
+/* Active State */
+.nav-pills .nav-link.active {
+  background-color: #0251a4; /* Even darker for active */
+  color: #fff;
+  font-weight: 600;
+}
+
+
+
+
+/* Page Title */
+h3 {
+  font-weight: 600;
+  color: #2c3e50;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+/* Card Styling */
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+.card-title {
+  font-weight: 600;
+  color: #34495e;
+  font-size: 1.25rem;
+}
+
+/* Form Styling */
+.form-control {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+}
+
+.form-control:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+/* Buttons */
+button.btn-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  font-weight: 500;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 16px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button.btn-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+}
+
+button.btn-primary:disabled {
+  opacity: 0.7;
+}
+
+button.btn-sm {
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+button.btn-danger {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  font-weight: 500;
+  border-radius: 5px;
+  padding: 6px 12px;
+  font-size: 14px;
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+button.btn-danger:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+/* ✅ Table Styling (Aligned with Admin Dashboard) */
+.table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.table-bordered {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  background-color: #ffffff;
+  overflow: hidden;  /* Prevents border-radius from being overridden by table's child elements */
+}
+
+.table th,
+.table td {
+  border: 1px solid #ddd;
+  padding: 12px;
+  text-align: center;
+  border-radius: 2px;  /* Rounded corners for table cells */
+}
+
+/* Table Header Background Color (matching user dashboard) */
+.table th {
+  background-color: #007bff;  /* Light gray background for header */
+  color: whitesmoke;  /* Dark text color for contrast */
+  font-weight: 600;  /* Bold text in header */
+}
+
+.table td {
+  background-color: #f9f9f9;
+}
+
+.table td span {
+  font-weight: 600;
+}
+
+/* Rounded table header corners */
+.table thead th:first-child {
+  border-top-left-radius: 10px;
+}
+.table thead th:last-child {
+  border-top-right-radius: 10px;
+}
+
+/* Rounded table footer corners */
+.table tfoot td:first-child {
+  border-bottom-left-radius: 10px;
+}
+.table tfoot td:last-child {
+  border-bottom-right-radius: 10px;
+}
+
+/* Status Colors */
+.text-warning {
+  color: #f39c12;
+}
+.text-success {
+  color: #28a745;
+}
+.text-danger {
+  color: #dc3545;
+}
+.text-muted {
+  color: #6c757d;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .col-md-4 {
+    width: 100%;
+    margin-bottom: 10px;
   }
-  
-  /* Page Title */
-  h3 {
-    font-weight: 600;
-    color: #2c3e50;
-    font-size: 2rem;
-    margin-bottom: 20px;
-  }
-  
-  /* Card Styling */
-  .card {
-    background-color: #ffffff;
-    border-radius: 15px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  }
-  
-  .card-body {
-    padding: 20px;
-  }
-  
-  .card-title {
-    font-weight: 600;
-    color: #34495e;
-    font-size: 1.25rem;
-  }
-  
-  /* Form Styling */
-  .form-control {
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-  }
-  
-  .form-control:focus {
-    border-color: #007bff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-  }
-  
-  button.btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    font-weight: 500;
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 16px;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
-  }
-  
-  button.btn-primary:hover {
-    background-color: #0056b3;
-    border-color: #004085;
-  }
-  
-  button.btn-primary:disabled {
-    opacity: 0.7;
-  }
-  
-  /* Table Styling */
-  .table {
-    border-collapse: collapse;
+
+  .btn-primary.w-100 {
     width: 100%;
   }
-  
-  .table-bordered {
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    background-color: #ffffff;
-  }
-  
-  .table th,
-  .table td {
-    padding: 12px;
-    text-align: center;
-  }
-  
-  .table th {
-    background-color: #007bff;
-    color: white;
-  }
-  
-  .table td {
-    background-color: #f9f9f9;
-  }
-  
-  .table td span {
-    font-weight: 600;
-  }
-  
-  /* Status Badge Styling */
-  .text-warning {
-    color: #f39c12;
-  }
-  
-  .text-success {
-    color: #28a745;
-  }
-  
-  .text-danger {
-    color: #dc3545;
-  }
-  
-  .text-muted {
-    color: #6c757d;
-  }
-  
-  /* Button Styling for Actions */
-  button.btn-sm {
-    padding: 6px 12px;
+
+  .table {
     font-size: 14px;
   }
-  
-  button.btn-danger {
-    background-color: #dc3545;
-    border-color: #dc3545;
-    font-weight: 500;
-    border-radius: 5px;
-    padding: 6px 12px;
-    font-size: 14px;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  .card-body {
+    padding: 15px;
   }
-  
-  button.btn-danger:hover {
-    background-color: #c82333;
-    border-color: #bd2130;
-  }
-  
-  /* Spacing Adjustments for Loan Form */
-  .row.mb-2 {
-    margin-bottom: 20px;
-  }
-  /* Table Styling with Rounded Corners */
-.table-bordered {
-    border-radius: 10px;  /* Round the table corners */
-    border: 1px solid #ddd;
-    background-color: #ffffff;
-    overflow: hidden;  /* Prevents border-radius from being overridden by table's child elements */
-  }
-  
-  /* Apply rounded corners to table cells */
-  .table th,
-  .table td {
-    border: 1px solid #ddd;
-    padding: 12px;
-    text-align: center;
-    border-radius: 8px;  /* Rounded corners for table cells */
-  }
-  
-  /* Ensuring the table header has rounded top corners */
-  .table thead th:first-child {
-    border-top-left-radius: 10px;
-  }
-  
-  .table thead th:last-child {
-    border-top-right-radius: 10px;
-  }
-  
-  /* Ensuring the table footer has rounded bottom corners */
-  .table tfoot td:first-child {
-    border-bottom-left-radius: 10px;
-  }
-  
-  .table tfoot td:last-child {
-    border-bottom-right-radius: 10px;
-  }
-  
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .col-md-4 {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  
-    .btn-primary.w-100 {
-      width: 100%;
-    }
-  
-    .table {
-      font-size: 14px;
-    }
-  
-    .card-body {
-      padding: 15px;
-    }
-  }
-  
+}

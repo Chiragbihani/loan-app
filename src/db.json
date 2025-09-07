@@ -13,77 +13,45 @@
       "email": "admin@example.com",
       "password": "admin123",
       "role": "admin"
-    },
-    {
-      "id": "c653",
-      "fullName": "Nidhi",
-      "email": "Nidhi@gmail.com",
-      "password": "12345",
-      "phone": "1234567890",
-      "role": "user"
-    },
-    {
-      "id": "1b7f",
-      "fullName": "Tanuj",
-      "email": "tanuj@gmail.com",
-      "password": "12345",
-      "phone": "9876543210",
-      "role": "user"
-    },
-    {
-      "id": "393b",
-      "fullName": "Nidhi G ",
-      "email": "Nidhi@gmail.com",
-      "password": "12345",
-      "phone": "8105968937",
-      "role": "user"
     }
   ],
   "loans": [
     {
-      "id": "dbde",
-      "amount": 100000,
-      "type": "Home Loan",
-      "userId": "1",
-      "status": "approved",
-      "tenure": "2 ",
-      "dateTaken": "2025-09-04"
-    },
-    {
-      "id": "879f",
-      "amount": 123456,
-      "type": "car loan",
-      "userId": "1",
-      "status": "approved",
-      "tenure": "2",
-      "dateTaken": "2025-09-04"
-    },
-    {
-      "id": "09f8",
-      "amount": 100000,
-      "type": "gold",
+      "id": "bf9f",
+      "amount": 10000,
+      "type": "home",
       "userId": "1",
       "status": "pending",
       "tenure": 12,
-      "dateTaken": "2025-09-04"
+      "dateTaken": "2025-09-07"
     },
     {
-      "id": "aaae",
-      "amount": 1000000,
+      "id": "5a3c",
+      "amount": 123465,
       "type": "business",
       "userId": "1",
-      "status": "rejected",
+      "status": "pending",
       "tenure": 12,
-      "dateTaken": "2025-09-04"
+      "dateTaken": "2025-09-07"
     },
     {
-      "id": "a062",
-      "amount": 100000,
-      "type": "gold",
-      "userId": "c653",
+      "id": "b466",
+      "amount": 123654,
+      "type": "car",
+      "userId": "1",
       "status": "pending",
-      "tenure": 24,
-      "dateTaken": "2025-09-04"
+      "tenure": 2,
+      "dateTaken": "2025-09-07"
+    },
+    {
+      "id": "2d59",
+      "amount": 10000,
+      "type": "agriculture",
+      "userId": "1",
+      "status": "pending",
+      "tenure": 12,
+      "dateTaken": "2000-02-01"
     }
-  ]
+  ],
+  "repayments": []
 }

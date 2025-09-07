@@ -12,6 +12,7 @@ import { ApplyLoanComponent } from './components/apply-loan/apply-loan.component
 import { UserLoansComponent } from './components/user-loans/user-loans.component';
 import { AdminDashboardComponent } from './components/admin-dashboard/admin-dashboard.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { RepayLoanComponent } from './components/repay-loan/repay-loan.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
     ApplyLoanComponent,
     UserLoansComponent,
     AdminDashboardComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    RepayLoanComponent
   ],
   imports: [
     BrowserModule,

@@ -1,119 +1,164 @@
 <div class="d-flex">
   <!-- Sidebar -->
-  <div class="bg-light border-end p-3" style="width: 220px; height: 100vh;">
-    <h5 class="mb-3">Loan Manager</h5>
+  <!-- <div class="bg-white border-end p-3" style="width: 240px; height: 100vh;">
+    <h4 class="fw-bold mb-4"></h4>
     <ul class="nav flex-column">
-      <li class="nav-item">
-        <button class="btn btn-sm btn-outline-primary w-100 mb-2"
-                (click)="activeTab = 'pending'">Pending Loans</button>
-      </li>
-      <li class="nav-item">
-        <button class="btn btn-sm btn-outline-success w-100 mb-2"
-                (click)="activeTab = 'approved'">Approved Loans</button>
-      </li>
-      <li class="nav-item">
-        <button class="btn btn-sm btn-outline-danger w-100 mb-2"
-                (click)="activeTab = 'rejected'">Rejected Loans</button>
+      <li class="nav-item mb-2">
+        <a class="nav-link d-flex align-items-center" (click)="activeTab = ''" style="cursor:pointer;">
+          <i class="bi bi-house me-2"></i> Dashboard
+        </a>
       </li>
     </ul>
-  </div>
+  </div> -->
 
   <!-- Main Content -->
-  <div class="flex-grow-1 p-4">
-    <!-- Report Cards -->
+  <div class="flex-grow-1 p-4 bg-light">
+    <!-- Top Bar -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+      <h3 class="fw-bold"> Admin Dashboard</h3>
+    </div>
+
+    <!-- Dashboard Summary Cards -->
     <div class="row mb-4">
-      <div class="col-md-4">
-        <div class="card text-center border-primary">
+      <div class="col-md-3">
+        <div class="card shadow-sm border-0" (click)="activeTab = 'approved'" style="cursor:pointer;">
           <div class="card-body">
-            <h5 class="card-title text-primary">Pending Loans</h5>
-            <h3>{{pendingLoans.length}}</h3>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card text-center border-success">
-          <div class="card-body">
-            <h5 class="card-title text-success">Approved Loans</h5>
+            <span class="text-primary small">Active Loans 💳</span>
             <h3>{{approvedLoans.length}}</h3>
           </div>
         </div>
       </div>
-      <div class="col-md-4">
-        <div class="card text-center border-danger">
+      <div class="col-md-3">
+        <div class="card shadow-sm border-0" (click)="activeTab = 'pending'" style="cursor:pointer;">
           <div class="card-body">
-            <h5 class="card-title text-danger">Rejected Loans</h5>
+            <span class="text-warning small">Pending Loans ⏳</span>
+            <h3>{{pendingLoans.length}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow-sm border-0" (click)="activeTab = 'rejected'" style="cursor:pointer;">
+          <div class="card-body">
+            <span class="text-danger small">Rejected Loans ❌</span>
             <h3>{{rejectedLoans.length}}</h3>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="card shadow-sm border-0" (click)="activeTab = 'repaid'" style="cursor:pointer;">
+          <div class="card-body">
+            <span class="text-success small">Fully Paid Loans 💵</span>
+            <h3>{{repaidLoans.length}}</h3>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Pending Loans Table -->
+    <!-- Charts Section -->
+   <div class="row">
+  <div class="col-md-6">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <h6 class="fw-bold">Funds Disbursed</h6>
+        <canvas id="fundsChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card shadow-sm border-0">
+      <div class="card-body">
+        <h6 class="fw-bold">Total Funds</h6>
+        <canvas id="collectedChart"></canvas>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Loan Tables -->
     <div *ngIf="activeTab === 'pending'">
       <h4>Pending Loans</h4>
       <table class="table table-bordered" *ngIf="pendingLoans.length > 0; else noPending">
-        <tr>
-          <th>Loan ID</th><th>User ID</th><th>User Name</th>
-          <th>Type</th><th>Amount</th><th>Action</th>
-        </tr>
-        <tr *ngFor="let loan of pendingLoans">
-          <td>{{loan.id}}</td>
-          <td>{{loan.userId}}</td>
-          <td>{{getUserName(loan.userId)}}</td>
-          <td>{{loan.type}}</td>
-          <td>{{loan.amount}}</td>
-          <td>
-            <button class="btn btn-success btn-sm" (click)="updateStatus(loan.id, 'approved')">Approve</button>
-            <button class="btn btn-danger btn-sm" (click)="updateStatus(loan.id, 'rejected')">Reject</button>
-          </td>
-        </tr>
+        <thead>
+          <tr><th>ID</th><th>User</th><th>Type</th><th>Amount</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loan of pendingLoans">
+            <td>{{loan.id}}</td>
+            <td>{{getUserName(loan.userId)}}</td>
+            <td>{{loan.type}}</td>
+            <td>{{loan.amount}}</td>
+            <td>
+              <button class="btn btn-success btn-sm" (click)="updateStatus(loan.id,'approved')">Approve</button>
+              <button class="btn btn-danger btn-sm" (click)="updateStatus(loan.id,'rejected')">Reject</button>
+            </td>
+          </tr>
+        </tbody>
       </table>
       <ng-template #noPending>
         <div class="alert alert-info small">No pending loan requests found.</div>
       </ng-template>
     </div>
 
-    <!-- Approved Loans Table -->
     <div *ngIf="activeTab === 'approved'">
       <h4>Approved Loans</h4>
       <table class="table table-bordered" *ngIf="approvedLoans.length > 0; else noApproved">
-        <tr>
-          <th>Loan ID</th><th>User ID</th><th>User Name</th>
-          <th>Type</th><th>Amount</th><th>Status</th>
-        </tr>
-        <tr *ngFor="let loan of approvedLoans">
-          <td>{{loan.id}}</td>
-          <td>{{loan.userId}}</td>
-          <td>{{getUserName(loan.userId)}}</td>
-          <td>{{loan.type}}</td>
-          <td>{{loan.amount}}</td>
-          <td><span class="text-success">Approved</span></td>
-        </tr>
+        <thead>
+          <tr><th>ID</th><th>User</th><th>Type</th><th>Amount</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loan of approvedLoans">
+            <td>{{loan.id}}</td>
+            <td>{{getUserName(loan.userId)}}</td>
+            <td>{{loan.type}}</td>
+            <td>{{loan.amount}}</td>
+            <td><span class="text-success">Approved</span></td>
+          </tr>
+        </tbody>
       </table>
       <ng-template #noApproved>
         <div class="alert alert-secondary small">No approved loans available.</div>
       </ng-template>
     </div>
 
-    <!-- Rejected Loans Table -->
     <div *ngIf="activeTab === 'rejected'">
       <h4>Rejected Loans</h4>
       <table class="table table-bordered" *ngIf="rejectedLoans.length > 0; else noRejected">
-        <tr>
-          <th>Loan ID</th><th>User ID</th><th>User Name</th>
-          <th>Type</th><th>Amount</th><th>Status</th>
-        </tr>
-        <tr *ngFor="let loan of rejectedLoans">
-          <td>{{loan.id}}</td>
-          <td>{{loan.userId}}</td>
-          <td>{{getUserName(loan.userId)}}</td>
-          <td>{{loan.type}}</td>
-          <td>{{loan.amount}}</td>
-          <td><span class="text-danger">Rejected</span></td>
-        </tr>
+        <thead>
+          <tr><th>ID</th><th>User</th><th>Type</th><th>Amount</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loan of rejectedLoans">
+            <td>{{loan.id}}</td>
+            <td>{{getUserName(loan.userId)}}</td>
+            <td>{{loan.type}}</td>
+            <td>{{loan.amount}}</td>
+            <td><span class="text-danger">Rejected</span></td>
+          </tr>
+        </tbody>
       </table>
       <ng-template #noRejected>
         <div class="alert alert-warning small">No rejected loans at the moment.</div>
+      </ng-template>
+    </div>
+
+    <div *ngIf="activeTab === 'repaid'">
+      <h4>Repaid Loans</h4>
+      <table class="table table-bordered" *ngIf="repaidLoans.length > 0; else noRepaid">
+        <thead>
+          <tr><th>ID</th><th>User</th><th>Type</th><th>Amount</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let loan of repaidLoans">
+            <td>{{loan.id}}</td>
+            <td>{{getUserName(loan.userId)}}</td>
+            <td>{{loan.type}}</td>
+            <td>{{loan.amount}}</td>
+            <td><span class="text-danger">Repaid</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <ng-template #noRepaid>
+        <div class="alert alert-warning small">No Repaid loans at the moment.</div>
       </ng-template>
     </div>
   </div>

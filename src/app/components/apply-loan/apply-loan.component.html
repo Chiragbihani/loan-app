@@ -5,7 +5,7 @@
     <!-- Type of Loan -->
     <div class="mb-3">
       <label class="form-label">Type of Loan</label>
-      <select class="form-select" required name="type" [(ngModel)]="loan.type">
+      <select class="form-select" required name="type" [(ngModel)]="loan.type" #loantype="ngModel">
         <option value="" disabled selected>Select Loan Type</option>
         <option value="home">Home Loan (7% p.a.)</option>
         <option value="personal">Personal Loan (12% p.a.)</option>
@@ -17,26 +17,48 @@
         <option value="medical">Medical Loan (9% p.a.)</option>
       </select>
     </div>
+    <div *ngIf="loantype.invalid && loantype.touched" class="text-danger mt-1">
+    <small *ngIf="loantype.errors?.['required']">Loan Type is required.</small>
+  </div>
 
     <!-- Amount -->
     <div class="mb-3">
       <label class="form-label">Amount</label>
-      <input type="number" class="form-control" required name="amount" [(ngModel)]="loan.amount">
+      <input type="number" class="form-control" required name="amount" [(ngModel)]="loan.amount" #amount="ngModel" min="1000">
     </div>
+    <div *ngIf="amount.invalid && amount.touched" class="text-danger">
+    <small *ngIf="amount.errors?.['min']">Minimum loan amount is ₹1000.</small>
+    <small *ngIf="amount.errors?.['required']">Amount is required.</small>
+  </div>
 
     <!-- Tenure -->
     <div class="mb-3">
       <label class="form-label">Tenure (months)</label>
-      <input type="number" class="form-control" required name="tenure" [(ngModel)]="loan.tenure">
+      <input type="number" class="form-control" required name="tenure" [(ngModel)]="loan.tenure" #tenure="ngModel" min="1">
     </div>
+    <div *ngIf="tenure.invalid && tenure.touched" class="text-danger">
+    <small *ngIf="tenure.errors?.['min']">Minimum loan tenure is 1 Months.</small>
+    <small *ngIf="tenure.errors?.['required']">Tenure is required.</small>
+  </div>
 
     <!-- Date of Loan Taken -->
-    <div class="mb-3">
-      <label class="form-label">Date of Loan Taken</label>
-      <input type="date" class="form-control" required name="dateTaken" [(ngModel)]="loan.dateTaken">
-    </div>
+<div class="mb-3 background-gray">
+  <label class="form-label">Date of Loan Taken</label>
+  <input type="date"
+         class="form-control"
+         name="dateTaken"
+         [(ngModel)]="loan.dateTaken"
+         [value]="today"
+         readonly>
+</div>
+
+
 
     <button class="btn btn-success" [disabled]="!loanForm.valid">Apply</button>
+
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="alert alert-success mt-3">
+      {{ successMessage }}
+    </div>
   </form>
 </div>
-  

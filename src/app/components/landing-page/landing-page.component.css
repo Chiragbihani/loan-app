@@ -1,107 +1,110 @@
-/* General Body Styling */
-body {
-    background-color: #f8f9fa;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Background Gradient */
+.landing-container {
+  background: linear-gradient(135deg, #f0f4ff, #ffffff);
+  min-height: 100vh;
+  padding-bottom: 60px;
+}
+
+/* Hero Section */
+.hero-section {
+  padding: 80px 20px 60px;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  border-radius: 0 0 50px 50px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.hero-section h1 {
+  font-weight: 700;
+  font-size: 2.8rem;
+}
+
+.hero-section p {
+  font-size: 1.3rem;
+  margin-top: 10px;
+  opacity: 0.9;
+}
+
+.hero-buttons {
+  margin-top: 25px;
+}
+
+/* Buttons */
+.btn-primary, .btn-outline-primary {
+  font-weight: 600;
+  border-radius: 30px;
+  padding: 12px 30px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  background-color: #0056b3;
+}
+
+.btn-outline-primary:hover {
+  background-color: #fff;
+  color: #0056b3;
+  transform: translateY(-3px);
+}
+
+/* Section Titles */
+.section-title {
+  font-weight: 700;
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.section-subtitle {
+  color: #6c757d;
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+/* Feature Cards */
+.feature-card {
+  border-radius: 15px;
+  border: none;
+  padding: 20px;
+  background: #ffffff;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Icons */
+.icon {
+  font-size: 2.5rem;
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .hero-section {
+    padding: 60px 20px;
+    border-radius: 0 0 30px 30px;
   }
-  
-  /* Header Styles */
-  h1.display-4 {
-    font-weight: 700;
-    color: #2c3e50;
-    font-size: 2.5rem;
+
+  .hero-section h1 {
+    font-size: 2.2rem;
   }
-  
-  p.lead {
-    color: #6c757d;
-    font-size: 1.25rem;
-  }
-  
-  /* Card Styling */
-  .card {
-    border-radius: 10px;
-    border: none;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  }
-  
-  .card-body {
-    padding: 20px;
-  }
-  
-  .card-title {
-    font-weight: 600;
-    color: #34495e;
-    font-size: 1.2rem;
-  }
-  
-  .card-text {
-    color: #6c757d;
+
+  .hero-section p {
     font-size: 1rem;
   }
-  
-  /* Button Styling */
-  .btn-primary {
-    background-color: #007bff;
-    border-color: #007bff;
-    font-weight: 500;
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 16px;
-    transition: background-color 0.2s ease, border-color 0.2s ease;
+
+  .btn-primary, .btn-outline-primary {
+    width: 100%;
+    margin-bottom: 10px;
   }
-  
-  .btn-outline-primary {
-    border-color: #007bff;
-    color: #007bff;
-    font-weight: 500;
-    border-radius: 10px;
-    padding: 12px;
-    font-size: 16px;
-    transition: background-color 0.2s ease, color 0.2s ease;
+
+  .feature-card {
+    margin-bottom: 20px;
   }
-  
-  .btn-primary:hover,
-  .btn-outline-primary:hover {
-    background-color: #0056b3;
-    border-color: #0056b3;
-    color: #ffffff;
-  }
-  
-  .btn-outline-primary:hover {
-    background-color: #e6f0ff;
-    color: #007bff;
-  }
-  
-  /* Spacing Adjustments for Button Row */
-  .row.justify-content-center {
-    margin-top: 30px;
-  }
-  
-  .col-auto {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-  }
-  
-  /* Responsive Adjustments */
-  @media (max-width: 768px) {
-    .col-md-3 {
-      margin-bottom: 20px;
-    }
-  
-    .card-body {
-      padding: 15px;
-    }
-  
-    .btn-primary,
-    .btn-outline-primary {
-      width: 100%;
-      margin-bottom: 10px;
-    }
-  }
-  
+}
+

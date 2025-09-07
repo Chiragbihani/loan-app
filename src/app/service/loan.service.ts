@@ -6,27 +6,39 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class LoanService {
-  private baseUrl = 'http://localhost:3000/loans';
+  private loansUrl = 'http://localhost:3000/loans';
+  private repaymentsUrl = 'http://localhost:3000/repayments';
 
   constructor(private http: HttpClient) {}
 
   // For user
   applyLoan(loan: any): Observable<any> {
-    return this.http.post(this.baseUrl, loan);
+    return this.http.post(this.loansUrl, loan);
   }
 
   getUserLoans(userId: string): Observable<any[]> {
-    return this.http.get<any[]>(`${this.baseUrl}?userId=${userId}`);
+    return this.http.get<any[]>(`${this.loansUrl}?userId=${userId}`);
   }
 
   // For admin
   getAllLoans(): Observable<any[]> {
-    return this.http.get<any[]>(this.baseUrl);
+    return this.http.get<any[]>(this.loansUrl);
   }
 
   updateLoanStatus(id: number, status: string): Observable<any> {
-    return this.http.patch(`${this.baseUrl}/${id}`, { status });
+    return this.http.patch(`${this.loansUrl}/${id}`, { status });
   }
-  
-}
 
+  // ✅ repayments
+  addRepayment(repayment: any): Observable<any> {
+    return this.http.post(this.repaymentsUrl, repayment);
+  }
+
+  getUserRepayments(userId: number): Observable<any[]> {
+    return this.http.get<any[]>(`${this.repaymentsUrl}?userId=${userId}`);
+  }
+
+  getAllRepayments(): Observable<any[]> {
+    return this.http.get<any[]>(this.repaymentsUrl);
+  }
+}
