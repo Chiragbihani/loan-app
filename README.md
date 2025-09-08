@@ -10,15 +10,18 @@ It allows **customers** to register, log in, and apply for loans, while **manage
 ### 👤 Customer (User)
 - Register & Login  
 - Apply for a new loan  
-- View all previous loans with status (`Pending`, `Approved`, `Rejected`, `Cancelled`)  
-- Cancel a loan request if it is still pending  
+- View all previous loans with status (`Pending`, `Approved`, `Rejected`, `Cancelled`,`Repaid`)  
+- Cancel a loan request if it is still pending
+- Repay a loan once approved.
 
 ### 👨‍💼 Manager (Admin)
 - Login with admin credentials  
-- View all **Pending**, **Approved**, and **Rejected** loans in separate tabs  
+- View all **Pending**, **Approved**, **Repaid** and **Rejected** loans in separate tabs  
 - Approve or Reject loan requests  
 - Move rejected loans back to **Pending** if documents are corrected  
-- Full control over all customers' loan requests  
+- Full control over all customers' loan requests
+- See the chart viusalization for the funds.
+- Download the complete report.
 
 ---
 
