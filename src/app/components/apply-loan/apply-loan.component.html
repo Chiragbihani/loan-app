@@ -51,14 +51,6 @@
          [value]="today"
          readonly>
 </div>
-
-
-
     <button class="btn btn-success" [disabled]="!loanForm.valid">Apply</button>
-
-    <!-- Success Message -->
-    <div *ngIf="successMessage" class="alert alert-success mt-3">
-      {{ successMessage }}
-    </div>
   </form>
 </div>

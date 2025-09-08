@@ -53,13 +53,15 @@
         </div>
       </div>
     </div>
-
+    <div class="text-end mb-3">
+  <button class="btn btn-primary" (click)="downloadReport()">📄 Download Report</button>
+</div>
     <!-- Charts Section -->
    <div class="row">
   <div class="col-md-6">
     <div class="card shadow-sm border-0">
       <div class="card-body">
-        <h6 class="fw-bold">Funds Disbursed</h6>
+        <h6 class="fw-bold">Funds(in / out)</h6>
         <canvas id="fundsChart"></canvas>
       </div>
     </div>
@@ -75,7 +77,7 @@
 </div>
 
     <!-- Loan Tables -->
-    <div *ngIf="activeTab === 'pending'">
+    <div id ="pendingLoans" *ngIf="activeTab === 'pending'">
       <h4>Pending Loans</h4>
       <table class="table table-bordered" *ngIf="pendingLoans.length > 0; else noPending">
         <thead>
@@ -99,7 +101,7 @@
       </ng-template>
     </div>
 
-    <div *ngIf="activeTab === 'approved'">
+    <div id="approvedLoans" *ngIf="activeTab === 'approved'">
       <h4>Approved Loans</h4>
       <table class="table table-bordered" *ngIf="approvedLoans.length > 0; else noApproved">
         <thead>
@@ -120,7 +122,7 @@
       </ng-template>
     </div>
 
-    <div *ngIf="activeTab === 'rejected'">
+    <div id="rejectedLoans" *ngIf="activeTab === 'rejected'">
       <h4>Rejected Loans</h4>
       <table class="table table-bordered" *ngIf="rejectedLoans.length > 0; else noRejected">
         <thead>
@@ -141,18 +143,18 @@
       </ng-template>
     </div>
 
-    <div *ngIf="activeTab === 'repaid'">
+    <div id="repaidLoans" *ngIf="activeTab === 'repaid'">
       <h4>Repaid Loans</h4>
       <table class="table table-bordered" *ngIf="repaidLoans.length > 0; else noRepaid">
         <thead>
-          <tr><th>ID</th><th>User</th><th>Type</th><th>Amount</th><th>Status</th></tr>
+          <tr><th>ID</th><th>User</th><th>Type</th><th> Repaid Amount</th><th>Status</th></tr>
         </thead>
         <tbody>
           <tr *ngFor="let loan of repaidLoans">
             <td>{{loan.id}}</td>
             <td>{{getUserName(loan.userId)}}</td>
             <td>{{loan.type}}</td>
-            <td>{{loan.amount}}</td>
+            <td>{{getRepaidAmount(loan.id)}}</td>
             <td><span class="text-danger">Repaid</span></td>
           </tr>
         </tbody>

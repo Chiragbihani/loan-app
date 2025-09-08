@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanService } from '../../service/loan.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-user-loans',
@@ -43,19 +44,41 @@ export class UserLoansComponent implements OnInit {
 
   applyLoan() {
     this.loanService.applyLoan(this.newLoan).subscribe(() => {
-      alert('Loan applied successfully! Pending approval.');
+      Swal.fire({
+        title: 'Application Submitted',
+        text: 'Your loan has been applied successfully and is pending approval.',
+        icon: 'success',
+        confirmButtonText: 'Okay',
+        confirmButtonColor: '#3498db'
+      });
       this.newLoan = { amount: '', type: '', userId: this.newLoan.userId, status: 'pending', tenure: '', dateTaken: '' };
       this.loadLoans();
     });
   }
 
   cancelLoan(id: number) {
-    if (confirm('Are you sure you want to cancel this loan request?')) {
-      this.loanService.updateLoanStatus(id, 'cancelled').subscribe(() => {
-        alert('Loan request cancelled.');
-        this.loadLoans();
-      });
-    }
+    Swal.fire({
+      title: 'Cancel Loan Request?',
+      text: 'Are you sure you want to cancel this loan request?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, cancel it',
+      cancelButtonText: 'No, keep it',
+      confirmButtonColor: '#e74c3c',
+      cancelButtonColor: '#95a5a6'
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.loanService.updateLoanStatus(id, 'cancelled').subscribe(() => {
+          Swal.fire({
+            title: 'Cancelled',
+            text: 'Your loan request has been cancelled.',
+            icon: 'success',
+            confirmButtonColor: '#27ae60'
+          });
+          this.loadLoans();
+        });
+      }
+    });
   }
 
   calculateRepayment(loan: any): number {

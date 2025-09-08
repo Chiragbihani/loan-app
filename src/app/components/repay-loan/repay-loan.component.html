@@ -1,5 +1,4 @@
 <div class="container mt-4">
-  <h3 class="fw-bold mb-4">Repay Loan</h3>
 
   <!-- If no active loans -->
   <div *ngIf="activeLoans.length === 0" class="alert alert-info">
@@ -10,14 +9,14 @@
   <div class="card shadow-sm mb-4" *ngIf="activeLoans.length > 0">
     <div class="card-body">
       <h5 class="card-title">Make a Repayment</h5>
-      <form (ngSubmit)="repayLoan()">
+      <form (ngSubmit)="confirmPayment()">
         <!-- Loan Selection -->
         <div class="mb-3">
           <label for="loanId" class="form-label">Select Loan</label>
           <select class="form-select" [(ngModel)]="selectedLoanId" name="loanId" required>
-            <option [ngValue]="null" disabled selected>Select a loan</option>
+            <option [ngValue]="null" disabled>Select a loan</option>
             <option *ngFor="let loan of activeLoans" [value]="loan.id">
-              Loan #{{loan.id}} - {{loan.type}} (₹{{loan.amount}})
+              Loan #{{loan.id}} - {{loan.type | titlecase}} (₹{{loan.amount}})
             </option>
           </select>
         </div>
@@ -55,8 +54,37 @@
           </select>
         </div>
 
+        <!-- Payment Details -->
+        <div *ngIf="paymentMode === 'UPI'" class="mb-3">
+          <label class="form-label">UPI ID</label>
+          <input type="text" [(ngModel)]="upiId" name="upiId" class="form-control" placeholder="yourname@upi">
+        </div>
+
+        <div *ngIf="paymentMode === 'Card'" class="mb-3">
+          <label class="form-label">Card Number</label>
+          <input type="text" [(ngModel)]="cardNumber" name="cardNumber" maxlength="16" class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx">
+
+          <label class="form-label mt-2">Expiry</label>
+          <input type="text" [(ngModel)]="cardExpiry" name="cardExpiry" class="form-control" placeholder="MM/YY">
+
+          <label class="form-label mt-2">CVV</label>
+          <input type="password" [(ngModel)]="cardCvv" name="cardCvv" maxlength="3" class="form-control" placeholder="***">
+        </div>
+
+        <div *ngIf="paymentMode === 'NetBanking'" class="mb-3">
+          <label class="form-label">Select Bank</label>
+          <select [(ngModel)]="bank" name="bank" class="form-select">
+            <option value="">-- Select Bank --</option>
+            <option>SBI</option>
+            <option>HDFC</option>
+            <option>ICICI</option>
+            <option>Axis Bank</option>
+          </select>
+        </div>
+
+        <!-- Confirm & Pay -->
         <button class="btn btn-primary" type="submit" [disabled]="!selectedLoanId">
-          Confirm Repayment
+          Proceed to Pay
         </button>
       </form>
     </div>

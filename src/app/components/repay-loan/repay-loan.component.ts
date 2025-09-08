@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanService } from '../../service/loan.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-repay-loan',
@@ -7,12 +8,18 @@ import { LoanService } from '../../service/loan.service';
   styleUrls: ['./repay-loan.component.css']
 })
 export class RepayLoanComponent implements OnInit {
-  activeLoans: any[] = []; // Only approved/active loans
+  activeLoans: any[] = [];
   repayments: any[] = [];
   selectedLoanId: number | null = null;
   paymentMode: string = 'UPI';
 
-  // Interest rates mapping (should match user-loans.component.ts)
+  // Extra payment details
+  upiId: string = '';
+  cardNumber: string = '';
+  cardExpiry: string = '';
+  cardCvv: string = '';
+  bank: string = '';
+
   loanInterestRates: { [key: string]: number } = {
     home: 7,
     personal: 12,
@@ -34,7 +41,6 @@ export class RepayLoanComponent implements OnInit {
   loadActiveLoans() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser')!);
     this.loanService.getUserLoans(currentUser.id).subscribe(loans => {
-      // Filter only approved/active loans
       this.activeLoans = loans
         .filter(loan => loan.status === 'approved')
         .map(loan => ({
@@ -45,7 +51,6 @@ export class RepayLoanComponent implements OnInit {
     });
   }
 
-  // Dynamic repayment calculation
   calculateRepayment(loan: any): number {
     const rate = this.loanInterestRates[loan.type] || 10;
     const principal = Number(loan.amount);
@@ -71,38 +76,57 @@ export class RepayLoanComponent implements OnInit {
     return loan ? this.calculateRepaymentDate(loan) : 'N/A';
   }
 
-  repayLoan() {
-  if (!this.selectedLoanId) return;
-
-  const repayment = {
-    id: Date.now(), // unique id
-    userId: JSON.parse(localStorage.getItem('currentUser')!).id,
-    loanId: this.selectedLoanId,
-    amount: this.getRepaymentAmount(),
-    mode: this.paymentMode,
-    date: new Date()
-  };
-
-  // 1️⃣ Save repayment in db.json
-  this.loanService.addRepayment(repayment).subscribe(() => {
-    // 2️⃣ Update loan status to "repaid"
-    this.loanService.updateLoanStatus(this.selectedLoanId!, 'repaid').subscribe(() => {
-      alert(`Repayment of ₹${repayment.amount} for Loan #${repayment.loanId} successful!`);
-
-      // Refresh lists
-      this.loadActiveLoans();
-      this.loadRepayments();
-
-      this.selectedLoanId = null;
-      this.paymentMode = 'UPI';
+  // Step 1: Confirm payment before proceeding
+  confirmPayment() {
+    Swal.fire({
+      title: 'Confirm Payment',
+      text: `Are you sure you want to repay ₹${this.getRepaymentAmount()} via ${this.paymentMode}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, Pay Now',
+      cancelButtonText: 'Cancel'
+    }).then(result => {
+      if (result.isConfirmed) {
+        this.repayLoan();
+      }
     });
-  });
-}
+  }
 
-loadRepayments() {
-  const currentUser = JSON.parse(localStorage.getItem('currentUser')!);
-  this.loanService.getUserRepayments(currentUser.id).subscribe(res => {
-    this.repayments = res;
-  });
-}
+  // Step 2: Process repayment
+  repayLoan() {
+    if (!this.selectedLoanId) return;
+
+    const repayment = {
+      id: Date.now(),
+      userId: JSON.parse(localStorage.getItem('currentUser')!).id,
+      loanId: this.selectedLoanId,
+      amount: this.getRepaymentAmount(),
+      mode: this.paymentMode,
+      date: new Date()
+    };
+
+    this.loanService.addRepayment(repayment).subscribe(() => {
+      this.loanService.updateLoanStatus(this.selectedLoanId!, 'repaid').subscribe(() => {
+        Swal.fire('Payment Successful', `₹${repayment.amount} has been repaid successfully!`, 'success');
+
+        this.loadActiveLoans();
+        this.loadRepayments();
+
+        this.selectedLoanId = null;
+        this.paymentMode = 'UPI';
+        this.upiId = '';
+        this.cardNumber = '';
+        this.cardExpiry = '';
+        this.cardCvv = '';
+        this.bank = '';
+      });
+    });
+  }
+
+  loadRepayments() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')!);
+    this.loanService.getUserRepayments(currentUser.id).subscribe(res => {
+      this.repayments = res;
+    });
+  }
 }

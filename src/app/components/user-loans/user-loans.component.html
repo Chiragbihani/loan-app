@@ -46,10 +46,10 @@
               <tr>
                 <th>ID</th>
                 <th>Type</th>
-                <th>Amount</th>
-                <th>Tenure (Months)</th>
+                <th>Tenure(Months)</th>
                 <th>Date Taken</th>
                 <th>Repayment Date</th>
+                <th>Amount</th>
                 <th>Repayment Amount</th>
                 <th>Status</th>
                 <th>Actions</th>
@@ -59,9 +59,9 @@
               <tr *ngFor="let loan of loans">
                 <td>{{loan.id}}</td>
                 <td>{{loan.type}}</td>
-                <td>{{loan.amount}}</td>
                 <td>{{loan.tenure}}</td>
                 <td>{{loan.dateTaken}}</td>
+                <td>{{loan.amount}}</td>
                 <td>{{loan.repaymentDate}}</td>
                 <td>{{loan.repaymentAmount}}</td>
                 <td>
