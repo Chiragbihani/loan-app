@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoanService } from '../../service/loan.service';
+import { NotificationService } from '../../service/notification.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -31,7 +32,10 @@ export class RepayLoanComponent implements OnInit {
     medical: 9
   };
 
-  constructor(private loanService: LoanService) {}
+  constructor(
+    private loanService: LoanService,
+    private notificationService: NotificationService
+  ) {}
 
   ngOnInit() {
     this.loadActiveLoans();
@@ -76,7 +80,6 @@ export class RepayLoanComponent implements OnInit {
     return loan ? this.calculateRepaymentDate(loan) : 'N/A';
   }
 
-  // Step 1: Confirm payment before proceeding
   confirmPayment() {
     Swal.fire({
       title: 'Confirm Payment',
@@ -92,13 +95,13 @@ export class RepayLoanComponent implements OnInit {
     });
   }
 
-  // Step 2: Process repayment
   repayLoan() {
     if (!this.selectedLoanId) return;
 
+    const currentUser = JSON.parse(localStorage.getItem('currentUser')!);
     const repayment = {
       id: Date.now(),
-      userId: JSON.parse(localStorage.getItem('currentUser')!).id,
+      userId: currentUser.id,
       loanId: this.selectedLoanId,
       amount: this.getRepaymentAmount(),
       mode: this.paymentMode,
@@ -108,6 +111,16 @@ export class RepayLoanComponent implements OnInit {
     this.loanService.addRepayment(repayment).subscribe(() => {
       this.loanService.updateLoanStatus(this.selectedLoanId!, 'repaid').subscribe(() => {
         Swal.fire('Payment Successful', `₹${repayment.amount} has been repaid successfully!`, 'success');
+
+        // 🔔 Notify admin
+        this.notificationService.pushNotification({
+          id: Date.now().toString(),
+          role: 'admin',
+          message: `${currentUser.fullName} has repaid loan #${this.selectedLoanId}`,
+          read: false,
+          timestamp: new Date(),
+          userId: currentUser.id
+        }).subscribe();
 
         this.loadActiveLoans();
         this.loadRepayments();

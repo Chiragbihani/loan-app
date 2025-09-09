@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+.notification-item:hover {
+  background-color: #f1f1f1 !important;
+  transition: background 0.2s ease-in-out;
+}
 
 /* Reset to default styles */
 body {

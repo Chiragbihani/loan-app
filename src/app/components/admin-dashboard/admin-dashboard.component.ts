@@ -5,6 +5,7 @@ import { Chart, registerables } from 'chart.js';
 Chart.register(...registerables);
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
+import { NotificationService } from '../../service/notification.service';
 
 @Component({
   selector: 'app-admin-dashboard',
@@ -21,16 +22,20 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
   fundsChart: any;
   collectedChart: any;
   repayments: any[] = [];
+  notifications: any[] = [];
+  unreadCount: number = 0;
+  showNotifications: boolean = false;
 
   // private fundsChart: Chart | null = null;
   // private collectedChart: Chart | null = null;
 
-  constructor(private loanService: LoanService, private http: HttpClient) {}
+  constructor(private loanService: LoanService, private http: HttpClient, private notificationService: NotificationService) {}
 
   ngOnInit() {
     this.fetchLoans();
     this.fetchUsers();
     this.loadRepayments();
+    this.loadNotifications();
   }
 
   ngAfterViewInit() {
@@ -69,11 +74,76 @@ export class AdminDashboardComponent implements OnInit, AfterViewInit {
     });
   }
 
-  updateStatus(id: number, status: string) {
-    this.loanService.updateLoanStatus(id, status).subscribe(() => {
-      this.fetchLoans();
+  // inside updateStatus()
+updateStatus(id: number, status: string) {
+  this.loanService.updateLoanStatus(id, status).subscribe(() => {
+    this.fetchLoans();
+
+    // 🔔 Notify user
+    this.loanService.getAllLoans().subscribe(allLoans => {
+      const loan = allLoans.find(l => l.id === id);
+      if (loan) {
+        this.http.get<any>(`http://localhost:3000/users/${loan.userId}`).subscribe(user => {
+          const message =
+            status === 'approved'
+              ? `Your loan #${loan.id} has been approved ✅`
+              : `Your loan #${loan.id} has been rejected ❌`;
+
+          this.http.post('http://localhost:3000/Notification', {
+            id: Date.now().toString(),
+            role: 'user',
+            userId: loan.userId,
+            message,
+            read: false,
+            timestamp: new Date()
+          }).subscribe();
+        });
+      }
+    });
+  });
+}
+loadNotifications() {
+  this.notificationService.getNotifications('admin').subscribe((res: any[]) => {
+    this.notifications = res;
+    this.unreadCount = res.filter(n => !n.read).length;
+  });
+}
+toggleNotifications() {
+  this.showNotifications = !this.showNotifications;
+  // Mark notifications as read when opened
+  if (this.showNotifications) {
+    this.notifications.forEach(n => n.read = true);
+    this.unreadCount = 0;
+  }
+}
+deleteNotification(notificationId: string) {
+  this.notificationService.deleteNotification(notificationId).subscribe(() => {
+    this.notifications = this.notifications.filter(n => n.id !== notificationId);
+    this.unreadCount = this.notifications.filter(n => !n.read).length;
+  });
+}
+
+updateUnreadCount() {
+  this.unreadCount = this.notifications.filter(n => !n.read).length;
+}
+markAsRead(notification: any) {
+  if (!notification.read) {
+    this.notificationService.markAsRead(notification.id).subscribe(() => {
+      notification.read = true;
+      this.updateUnreadCount();
     });
   }
+}
+clearAllNotifications() {
+  this.notifications.forEach(n => {
+    if (!n.read) {
+      this.notificationService.markAsRead(n.id).subscribe(() => {
+        n.read = true;
+        this.updateUnreadCount();
+      });
+    }
+  });
+}
 
   getUserName(userId: string): string {
     const user = this.users?.find((u) => u.id === userId);

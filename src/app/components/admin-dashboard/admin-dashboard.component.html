@@ -1,21 +1,59 @@
 <div class="d-flex">
-  <!-- Sidebar -->
-  <!-- <div class="bg-white border-end p-3" style="width: 240px; height: 100vh;">
-    <h4 class="fw-bold mb-4"></h4>
-    <ul class="nav flex-column">
-      <li class="nav-item mb-2">
-        <a class="nav-link d-flex align-items-center" (click)="activeTab = ''" style="cursor:pointer;">
-          <i class="bi bi-house me-2"></i> Dashboard
-        </a>
-      </li>
-    </ul>
-  </div> -->
-
   <!-- Main Content -->
   <div class="flex-grow-1 p-4 bg-light">
     <!-- Top Bar -->
     <div class="d-flex justify-content-between align-items-center mb-4">
-      <h3 class="fw-bold"> Admin Dashboard</h3>
+      <h3 class="fw-bold">Admin Dashboard</h3>
+
+      <!-- Notification Bell -->
+      <div class="position-relative me-3">
+        <i class="bi bi-bell-fill fs-4 text-dark" style="cursor:pointer;"
+           (click)="toggleNotifications()"></i>
+        
+        <!-- Badge for Unread Count -->
+        <span *ngIf="unreadCount > 0"
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          {{ unreadCount }}
+        </span>
+
+        <!-- Notifications Dropdown -->
+        <div *ngIf="showNotifications"
+             class="mt-2 p-3 border rounded bg-white shadow-lg position-absolute end-0"
+             style="width:300px; max-height:350px; overflow-y:auto; z-index:1050;">
+          
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <h6 class="fw-bold mb-0">Notifications</h6>
+            <button class="btn btn-sm btn-outline-danger py-0 px-2"
+                    (click)="clearAllNotifications()">
+              Clear All
+            </button>
+          </div>
+
+          <div *ngIf="notifications.length > 0; else noNotifications">
+            <div *ngFor="let n of notifications"
+                 class="p-2 border-bottom notification-item d-flex justify-content-between align-items-start"
+                 [ngClass]="{ 'fw-bold bg-light': !n.read }"
+                 style="cursor:pointer;"
+                 (click)="markAsRead(n)">
+              
+              <div>
+                <small class="text-muted d-block">{{ n.timestamp | date:'short' }}</small>
+                <span>{{ n.message }}</span>
+              </div>
+
+              <!-- Delete button -->
+              <button class="btn btn-sm btn-outline-danger ms-2 py-0 px-1"
+                      (click)="deleteNotification(n.id); $event.stopPropagation();">
+                ✖
+              </button>
+            </div>
+          </div>
+
+          <ng-template #noNotifications>
+            <p class="text-muted small text-center mb-0">No notifications yet.</p>
+          </ng-template>
+        </div>
+      </div>
     </div>
 
     <!-- Dashboard Summary Cards -->
@@ -53,28 +91,30 @@
         </div>
       </div>
     </div>
+
     <div class="text-end mb-3">
-  <button class="btn btn-primary" (click)="downloadReport()">📄 Download Report</button>
-</div>
+      <button class="btn btn-primary" (click)="downloadReport()">📄 Download Report</button>
+    </div>
+
     <!-- Charts Section -->
-   <div class="row">
-  <div class="col-md-6">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <h6 class="fw-bold">Funds(in / out)</h6>
-        <canvas id="fundsChart"></canvas>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h6 class="fw-bold">Funds(in / out)</h6>
+            <canvas id="fundsChart"></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card shadow-sm border-0">
+          <div class="card-body">
+            <h6 class="fw-bold">Total Funds</h6>
+            <canvas id="collectedChart"></canvas>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="col-md-6">
-    <div class="card shadow-sm border-0">
-      <div class="card-body">
-        <h6 class="fw-bold">Total Funds</h6>
-        <canvas id="collectedChart"></canvas>
-      </div>
-    </div>
-  </div>
-</div>
 
     <!-- Loan Tables -->
     <div id ="pendingLoans" *ngIf="activeTab === 'pending'">

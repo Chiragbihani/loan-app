@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { LoanService } from '../../service/loan.service';
 import { AuthService } from '../../service/auth.service';
+import { NotificationService } from '../../service/notification.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,18 +12,11 @@ export class ApplyLoanComponent {
   today: string = new Date().toISOString().split('T')[0];
   loan = { amount: '', type: '', userId: null, status: 'pending', tenure: '', dateTaken: this.today };
 
-  loanInterestRates: { [key: string]: number } = {
-    home: 7,
-    personal: 12,
-    education: 6,
-    car: 8,
-    gold: 10,
-    business: 11,
-    agriculture: 5,
-    medical: 9
-  };
-
-  constructor(private loanService: LoanService, private auth: AuthService) {}
+  constructor(
+    private loanService: LoanService,
+    private auth: AuthService,
+    private notificationService: NotificationService
+  ) {}
 
   onSubmit() {
     const currentUser = JSON.parse(localStorage.getItem('currentUser')!);
@@ -32,18 +26,22 @@ export class ApplyLoanComponent {
       next: () => {
         Swal.fire({
           title: 'Application Submitted',
-          html: `
-            <p>Your loan request has been received and is currently <b>pending approval</b>.</p>
-          `,
+          html: `<p>Your loan request has been received and is currently <b>pending approval</b>.</p>`,
           icon: 'info',
-          showConfirmButton: true,
           confirmButtonText: 'Okay',
-          confirmButtonColor: '#3498db',
-          background: '#f9fbfd',
-          color: '#2c3e50'
+          confirmButtonColor: '#3498db'
         });
 
-        // reset form
+        // 🔔 Notify admin
+        this.notificationService.pushNotification({
+          id: Date.now().toString(),
+          role: 'admin',
+          message: `${currentUser.fullName} applied for a new loan of ₹${this.loan.amount}`,
+          read: false,
+          timestamp: new Date(),
+          userId: currentUser.id
+        }).subscribe();
+
         this.loan = { amount: '', type: '', userId: currentUser.id, status: 'pending', tenure: '', dateTaken: this.today };
       },
       error: (err) => {
