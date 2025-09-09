@@ -16,12 +16,50 @@
     }
   ],
   "loans": [
-    
+    {
+      "id": "495b",
+      "amount": 90000,
+      "type": "personal",
+      "userId": "1",
+      "status": "repaid",
+      "tenure": 1,
+      "dateTaken": "2025-09-09"
+    }
   ],
   "repayments": [
-    
+    {
+      "id": 1757401134354,
+      "userId": "1",
+      "loanId": "495b",
+      "amount": 90900,
+      "mode": "NetBanking",
+      "date": "2025-09-09T06:58:54.354Z"
+    }
   ],
   "Notification": [
-    
+    {
+      "id": "1757401035067",
+      "role": "admin",
+      "message": "Chirag applied for a new loan of ₹90000",
+      "read": true,
+      "timestamp": "2025-09-09T06:57:15.067Z",
+      "userId": "1"
+    },
+    {
+      "id": "1757401080575",
+      "role": "user",
+      "userId": "1",
+      "message": "Your loan #495b has been approved ✅",
+      "read": true,
+      "timestamp": "2025-09-09T06:58:00.575Z"
+    },
+    {
+      "id": "1757401134376",
+      "role": "admin",
+      "message": "Chirag has repaid loan #495b",
+      "read": true,
+      "timestamp": "2025-09-09T06:58:54.376Z",
+      "userId": "1"
+    }
   ]
 }

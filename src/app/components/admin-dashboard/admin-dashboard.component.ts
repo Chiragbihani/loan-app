@@ -110,11 +110,6 @@ loadNotifications() {
 }
 toggleNotifications() {
   this.showNotifications = !this.showNotifications;
-  // Mark notifications as read when opened
-  if (this.showNotifications) {
-    this.notifications.forEach(n => n.read = true);
-    this.unreadCount = 0;
-  }
 }
 deleteNotification(notificationId: string) {
   this.notificationService.deleteNotification(notificationId).subscribe(() => {
