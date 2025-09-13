@@ -105,7 +105,7 @@ Frontend will be available at:
 ![Admin Dashboard](src/assets/admin_dashboard_notification.png)
 
 ### 📊 Loan Reports
-![Loan Reports](src/assets/loan_reports.pdf)
+![Loan Reports](src/assets/loan-report.pdf)
 
 
 ## Project Structure
