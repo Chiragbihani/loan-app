@@ -13,6 +13,14 @@
       "email": "admin@example.com",
       "password": "admin123",
       "role": "admin"
+    },
+    {
+      "id": "44ee",
+      "fullName": "Nidhi G ",
+      "email": "nidhi@gmail.com",
+      "password": "12345",
+      "phone": "8105968937",
+      "role": "user"
     }
   ],
   "loans": [
@@ -24,27 +32,107 @@
       "status": "repaid",
       "tenure": 1,
       "dateTaken": "2025-09-09"
+    },
+    {
+      "id": "72df",
+      "amount": 1000000,
+      "type": "personal",
+      "userId": "1",
+      "status": "repaid",
+      "tenure": 12,
+      "dateTaken": "2025-09-13"
+    },
+    {
+      "id": "b898",
+      "amount": 1000000,
+      "type": "medical",
+      "userId": "44ee",
+      "status": "rejected",
+      "tenure": 24,
+      "dateTaken": "2025-09-13"
+    },
+    {
+      "id": "ebee",
+      "amount": 500000,
+      "type": "home",
+      "userId": "44ee",
+      "status": "repaid",
+      "tenure": 60,
+      "dateTaken": "2025-09-13"
+    },
+    {
+      "id": "7c27",
+      "amount": 1000000,
+      "type": "business",
+      "userId": "44ee",
+      "status": "rejected",
+      "tenure": 120,
+      "dateTaken": "2025-09-13"
+    },
+    {
+      "id": "551b",
+      "amount": 20000,
+      "type": "medical",
+      "userId": "1",
+      "status": "cancelled",
+      "tenure": 2,
+      "dateTaken": "2025-09-13"
+    },
+    {
+      "id": "1951",
+      "amount": 20000,
+      "type": "agriculture",
+      "userId": "1",
+      "status": "rejected",
+      "tenure": 2,
+      "dateTaken": "2025-09-13"
+    },
+    {
+      "id": "710f",
+      "amount": 100000,
+      "type": "gold",
+      "userId": "1",
+      "status": "approved",
+      "tenure": 12,
+      "dateTaken": "2025-09-13"
+    },
+    {
+      "id": "27a4",
+      "amount": 200000,
+      "type": "car",
+      "userId": "1",
+      "status": "pending",
+      "tenure": 12,
+      "dateTaken": "2025-09-13"
     }
   ],
   "repayments": [
     {
-      "id": 1757401134354,
+      "id": "1757401134354",
       "userId": "1",
       "loanId": "495b",
       "amount": 90900,
       "mode": "NetBanking",
       "date": "2025-09-09T06:58:54.354Z"
+    },
+    {
+      "id": 1757742558092,
+      "userId": "1",
+      "loanId": "72df",
+      "amount": 1120000,
+      "mode": "UPI",
+      "date": "2025-09-13T05:49:18.092Z"
+    },
+    {
+      "id": 1757742593259,
+      "userId": "44ee",
+      "loanId": "ebee",
+      "amount": 675000,
+      "mode": "UPI",
+      "date": "2025-09-13T05:49:53.259Z"
     }
   ],
   "Notification": [
-    {
-      "id": "1757401035067",
-      "role": "admin",
-      "message": "Chirag applied for a new loan of ₹90000",
-      "read": true,
-      "timestamp": "2025-09-09T06:57:15.067Z",
-      "userId": "1"
-    },
     {
       "id": "1757401080575",
       "role": "user",
@@ -54,12 +142,132 @@
       "timestamp": "2025-09-09T06:58:00.575Z"
     },
     {
-      "id": "1757401134376",
+      "id": "1757741776505",
       "role": "admin",
-      "message": "Chirag has repaid loan #495b",
+      "message": "Nidhi G  applied for a new loan of ₹1000000",
       "read": true,
-      "timestamp": "2025-09-09T06:58:54.376Z",
+      "timestamp": "2025-09-13T05:36:16.505Z",
+      "userId": "44ee"
+    },
+    {
+      "id": "1757741798534",
+      "role": "admin",
+      "message": "Nidhi G  applied for a new loan of ₹500000",
+      "read": true,
+      "timestamp": "2025-09-13T05:36:38.534Z",
+      "userId": "44ee"
+    },
+    {
+      "id": "1757741828217",
+      "role": "admin",
+      "message": "Nidhi G  applied for a new loan of ₹1000000",
+      "read": true,
+      "timestamp": "2025-09-13T05:37:08.217Z",
+      "userId": "44ee"
+    },
+    {
+      "id": "1757741908226",
+      "role": "admin",
+      "message": "Chirag applied for a new loan of ₹20000",
+      "read": true,
+      "timestamp": "2025-09-13T05:38:28.226Z",
       "userId": "1"
+    },
+    {
+      "id": "1757741986729",
+      "role": "admin",
+      "message": "Chirag applied for a new loan of ₹20000",
+      "read": true,
+      "timestamp": "2025-09-13T05:39:46.729Z",
+      "userId": "1"
+    },
+    {
+      "id": "1757742025581",
+      "role": "admin",
+      "message": "Chirag cancelled loan #551b",
+      "read": true,
+      "timestamp": "2025-09-13T05:40:25.581Z",
+      "userId": "1"
+    },
+    {
+      "id": "1757742059889",
+      "role": "admin",
+      "message": "Chirag applied for a new loan of ₹100000",
+      "read": true,
+      "timestamp": "2025-09-13T05:40:59.889Z",
+      "userId": "1"
+    },
+    {
+      "id": "1757742240525",
+      "role": "user",
+      "userId": "1",
+      "message": "Your loan #72df has been approved ✅",
+      "read": true,
+      "timestamp": "2025-09-13T05:44:00.525Z"
+    },
+    {
+      "id": "1757742243111",
+      "role": "user",
+      "userId": "1",
+      "message": "Your loan #1951 has been rejected ❌",
+      "read": true,
+      "timestamp": "2025-09-13T05:44:03.111Z"
+    },
+    {
+      "id": "1757742247891",
+      "role": "user",
+      "userId": "1",
+      "message": "Your loan #710f has been approved ✅",
+      "read": true,
+      "timestamp": "2025-09-13T05:44:07.891Z"
+    },
+    {
+      "id": "1757742250349",
+      "role": "user",
+      "userId": "44ee",
+      "message": "Your loan #ebee has been approved ✅",
+      "read": true,
+      "timestamp": "2025-09-13T05:44:10.349Z"
+    },
+    {
+      "id": "1757742252165",
+      "role": "user",
+      "userId": "44ee",
+      "message": "Your loan #b898 has been rejected ❌",
+      "read": true,
+      "timestamp": "2025-09-13T05:44:12.165Z"
+    },
+    {
+      "id": "1757742264846",
+      "role": "user",
+      "userId": "44ee",
+      "message": "Your loan #7c27 has been rejected ❌",
+      "read": true,
+      "timestamp": "2025-09-13T05:44:24.846Z"
+    },
+    {
+      "id": "1757742427420",
+      "role": "admin",
+      "message": "Chirag applied for a new loan of ₹200000",
+      "read": false,
+      "timestamp": "2025-09-13T05:47:07.420Z",
+      "userId": "1"
+    },
+    {
+      "id": "1757742558148",
+      "role": "admin",
+      "message": "Chirag has repaid loan #72df",
+      "read": false,
+      "timestamp": "2025-09-13T05:49:18.148Z",
+      "userId": "1"
+    },
+    {
+      "id": "1757742593302",
+      "role": "admin",
+      "message": "Nidhi G  has repaid loan #ebee",
+      "read": false,
+      "timestamp": "2025-09-13T05:49:53.302Z",
+      "userId": "44ee"
     }
   ]
 }

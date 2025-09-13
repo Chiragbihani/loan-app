@@ -58,4 +58,136 @@
       </div>
     </div>
   </div>
+
+  <!-- How It Works Section -->
+  <div class="container mt-5 text-center">
+    <h2 class="section-title">How It Works</h2>
+    <p class="section-subtitle">Get your loan in just 3 easy steps</p>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="step-card apply-card">
+          <i class="fas fa-edit step-icon"></i>
+          <h5>1. Apply Online</h5>
+          <p>Fill out our quick application form and submit your loan request in minutes.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="step-card approval-card">
+          <i class="fas fa-check-circle step-icon"></i>
+          <h5>2. Get Approval</h5>
+          <p>Our Manager reviews your application and provides instant approval updates.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="step-card manage-card">
+          <i class="fas fa-wallet step-icon"></i>
+          <h5>3. Manage & Repay</h5>
+          <p>Track your loan, repayment schedule, and manage everything online.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Testimonials Section -->
+  <div class="container mt-5 text-center">
+    <h2 class="section-title">What Our Clients Say</h2>
+    <p class="section-subtitle">Trusted by thousands of happy borrowers</p>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p>"The application was so simple, and I got approval in less than 24 hours!"</p>
+          <h6>- Priya Sharma</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p>"Great experience! The support team guided me throughout the loan process."</p>
+          <h6>- Rohan Verma</h6>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="testimonial-card">
+          <p>"Managing repayments online is super easy. Highly recommend this platform."</p>
+          <h6>- Anjali Gupta</h6>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<footer class="footer">
+  <div class="footer-container d-flex justify-content-between align-items-center">
+    <div class="footer-left d-flex align-items-center">
+      <span class="footer-brand ms-1">Eton Loan Management</span>
+    </div>
+    <div class="footer-links">
+      <a href="#">Privacy Policy</a> | 
+      <a href="#">Terms & Conditions</a> | 
+      <a href="#">Contact</a>
+    </div>
+  </div>
+  <div class="text-center mt-2">
+    <small>© 2025 Eton Loan Management. All rights reserved.</small>
+  </div>
+</footer>
+
+<style>
+.step-card {
+  position: relative;
+  padding: 30px;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  overflow: visible;
+}
+
+.step-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.step-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+  width: 600px;
+  height: 450px;
+  background: no-repeat center/contain;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: all 0.4s ease;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.step-card:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.apply-card::after {
+  background-image: url("assets/Apply_loan.png");
+}
+
+.approval-card::after {
+  background-image: url("assets/admin_dashboard_notification.png");
+}
+
+.manage-card::after {
+  background-image: url("assets/Repay_loan.png");
+}
+
+.manage-card:hover::after {
+  animation: swapImages 4s infinite alternate ease-in-out;
+}
+
+@keyframes swapImages {
+  0%, 49% { background-image: url("assets/Applied_loans.png"); }
+  50%, 100% { background-image: url("assets/Repay_loan.png"); }
+}
+
+</style>

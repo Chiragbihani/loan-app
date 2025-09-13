@@ -13,6 +13,7 @@ It allows **customers** to register, log in, and apply for loans, while **manage
 - View all previous loans with status (`Pending`, `Approved`, `Rejected`, `Cancelled`,`Repaid`)  
 - Cancel a loan request if it is still pending
 - Repay a loan once approved.
+- Gets the notifcation of the Loan approved or Cancelled
 
 ### 👨‍💼 Manager (Admin)
 - Login with admin credentials  
@@ -22,6 +23,7 @@ It allows **customers** to register, log in, and apply for loans, while **manage
 - Full control over all customers' loan requests
 - See the chart viusalization for the funds.
 - Download the complete report.
+- Gets Notifcation of the any new loan or cancelled or repaid loan.
 
 ---
 
@@ -84,6 +86,28 @@ Frontend will be available at:
 - Can register via the /register page
 - Automatically assigned role: "user"
 
+## 📸 Screenshots
+
+### 🏠 Landing Page
+![Landing Page](src/assets/Landing_page.png)
+
+### 👤 User Dashboard
+![User Dashboard](src/assets/user_dashboard_notification.png)
+
+## Apply Loan
+![Applyloan](src/assets/Apply_loan.png)
+## Applied Loan
+![Appliedloan](src/assets/Applied_loans.png)
+## Repay Loan
+![repayloan](src/assets/Repay_loan.png)
+
+### 👨‍💼 Admin Dashboard
+![Admin Dashboard](src/assets/admin_dashboard_notification.png)
+
+### 📊 Loan Reports
+![Loan Reports](src/assets/loan_reports.png)
+
+
 ## Project Structure
 ```bash
 src/
@@ -94,15 +118,19 @@ src/
  │   │   ├── home/
  │   │   ├── user-loans/
  │   │   ├── admin-dashboard/
- │   │   └── apply-loan/
+ │   │   ├── apply-loan/
+ │   │   └── landing-page/              
  │   ├── services/
  │   │   ├── auth.service.ts
- │   │   └── loan.service.ts
+ │   │   ├── loan.service.ts
+ │   │   └── notification.service.ts    
  │   ├── guards/
  │   │   ├── auth.guard.ts
  │   │   └── admin.guard.ts
  │   └── app-routing.module.ts
+ ├── assets/                           
  └── db.json
+
 ```
 ## Contribution
 Pull requests are welcome. Please open an issue first to discuss what you would like to change.
